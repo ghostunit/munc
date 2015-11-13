@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Mp4HeaderFix")]
+[assembly: AssemblyTitle("Mp4HeaderFixTests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Mp4HeaderFix")]
+[assembly: AssemblyProduct("Mp4HeaderFixTests")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("49715ab3-2a93-4faf-bf79-fe490a36293c")]
+[assembly: Guid("7d399faa-f550-44ac-8e3f-bfec9882898b")]
 
 // Version information for an assembly consists of the following four values:
 //
