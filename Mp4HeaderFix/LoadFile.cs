@@ -5,9 +5,9 @@ namespace Mp4HeaderFix
 {
   public class LoadFile
   {
-    private FileLoadResult fileLoadResult;
     private string filename;
     private byte[] fileAsBytes;
+    private FileLoadResult fileLoadResult;
 
     public FileLoadResult Result
     {

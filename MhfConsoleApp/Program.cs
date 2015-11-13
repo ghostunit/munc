@@ -16,12 +16,13 @@ namespace MhfConsoleApp
       string newFilename = @"D:\tempFIX.mp4";
 
       LoadFile originalFile = new LoadFile(filename);
+      /*
       if (originalFile.Result == FileLoadResult.Loaded)
       {
         byte[] newFile = originalFile.Bytes.ReplaceBytes(oldDimensions, newDimensions);
         new WriteFile(newFile, newFilename);
       }
-
+      */
       Console.WriteLine("Press enter to quit.");
       Console.ReadLine();
     }

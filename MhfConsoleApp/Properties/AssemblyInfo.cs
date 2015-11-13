@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Mp4HeaderFix")]
+[assembly: AssemblyTitle("MhfConsoleApp")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Mp4HeaderFix")]
+[assembly: AssemblyProduct("MhfConsoleApp")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("b85b70e2-2e8e-4d1b-97a7-dd14a4325dd0")]
+[assembly: Guid("0402da0c-1a8a-4802-bc2d-3a8a793a4142")]
 
 // Version information for an assembly consists of the following four values:
 //
