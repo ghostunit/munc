@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MhfConsoleApp", "MhfConsole
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mp4HeaderFixTests", "Mp4HeaderFixTests\Mp4HeaderFixTests.csproj", "{CFA7B8FB-D7C8-40FE-8BB8-C68AE180B97D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mp4HeaderFixGui", "Mp4HeaderFixGui\Mp4HeaderFixGui.csproj", "{6D80232E-1CC4-46BB-B96D-C54947A8991B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{CFA7B8FB-D7C8-40FE-8BB8-C68AE180B97D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CFA7B8FB-D7C8-40FE-8BB8-C68AE180B97D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CFA7B8FB-D7C8-40FE-8BB8-C68AE180B97D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D80232E-1CC4-46BB-B96D-C54947A8991B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D80232E-1CC4-46BB-B96D-C54947A8991B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D80232E-1CC4-46BB-B96D-C54947A8991B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D80232E-1CC4-46BB-B96D-C54947A8991B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
