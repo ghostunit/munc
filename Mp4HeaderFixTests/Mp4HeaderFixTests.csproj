@@ -53,8 +53,17 @@
     <Compile Include="LoadFileTests.cs" />
     <Compile Include="PatternMatchTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SampleByteArrays.cs" />
-    <Compile Include="SampleFilenames.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Samples\SampleByteArrays.cs" />
+    <Compile Include="Samples\SampleFileList.cs" />
+    <Compile Include="Samples\SampleFilenames.cs" />
+    <Compile Include="FileListTests.cs" />
+    <Compile Include="DimensionTests.cs" />
+    <Compile Include="Mp4RepairJobTests.cs" />
     <Compile Include="WriteFileTests.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -62,6 +71,17 @@
       <Project>{4fa26e56-40ae-454c-bd8a-256d7a421191}</Project>
       <Name>Mp4HeaderFix</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="TestFiles\VideoWithBadHeader.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

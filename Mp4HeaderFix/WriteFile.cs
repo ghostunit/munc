@@ -7,7 +7,7 @@ namespace Mp4HeaderFix
   {
     private byte[] fileAsBytes;
     private string filename;
-    private FileWriteResult fileWriteResult;
+    private WriteFileResult writeFileResult;
 
     public byte[] Bytes
     {
@@ -17,11 +17,11 @@ namespace Mp4HeaderFix
       }
     }
 
-    public FileWriteResult Result
+    public WriteFileResult Result
     {
       get
       {
-        return fileWriteResult;
+        return writeFileResult;
       }
     }
 
@@ -29,18 +29,20 @@ namespace Mp4HeaderFix
     {
       this.filename = filename;
       this.fileAsBytes = fileAsBytes;
+      this.writeFileResult = WriteFileResult.Undefined;
+      Save();
     }
 
     private void Save()
     {
-      if (this.fileWriteResult != FileWriteResult.Undefined)
+      if (this.writeFileResult != WriteFileResult.Undefined)
       {
         return;
       }
 
       if (this.fileAsBytes.Length <= 0)
       {
-        this.fileWriteResult = FileWriteResult.NoDataToSave;
+        this.writeFileResult = WriteFileResult.NoDataToSave;
         return;
       }
 
@@ -50,25 +52,31 @@ namespace Mp4HeaderFix
       }
       catch (Exception ex)
       {
-        this.fileWriteResult = FileWriteResult.IllegalFilename;
+        this.writeFileResult = WriteFileResult.IllegalFilename;
         return;
       }
 
       try
       {
+        Directory.CreateDirectory(Path.GetDirectoryName(this.filename));
         FileStream fileStream = new FileStream(this.filename, FileMode.Create, FileAccess.Write);
         fileStream.Write(this.fileAsBytes, 0, this.fileAsBytes.Length);
         fileStream.Close();
       }
       catch (UnauthorizedAccessException ex)
       {
-        this.fileWriteResult = FileWriteResult.PermissionsDenied;
+        this.writeFileResult = WriteFileResult.PermissionsDenied;
+        return;
+      }
+      catch (Exception ex)
+      {
+        this.writeFileResult = WriteFileResult.UnknownError;
         return;
       }
 
       if (File.Exists(filename))
       {
-        this.fileWriteResult = FileWriteResult.Saved;
+        this.writeFileResult = WriteFileResult.Success;
       }
     }
 

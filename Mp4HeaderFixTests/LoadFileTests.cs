@@ -1,48 +1,49 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Mp4HeaderFix;
+using Mp4HeaderFixTests.Samples;
 
 namespace Mp4HeaderFixTests
 {
   [TestClass]
   public class LoadFileTests
   {
-    SampleFilenames f = new SampleFilenames();
+    SampleFilenames files = new SampleFilenames();
 
     [TestMethod]
     public void Result_ShouldBeLoaded_WhenByteArrayIsCreatedFromFilename()
     {
-      Assert.AreEqual(FileLoadResult.Loaded, new LoadFile(f.FileThatExists).Result);
+      Assert.AreEqual(ReadFileResult.Success, new LoadFile(files.FileThatExists).Result);
     }
 
     [TestMethod]
     public void Result_ShouldBeFileNotFound_WhenFileDoesNotExist()
     {
-      Assert.AreEqual(FileLoadResult.FileNotFound, new LoadFile(f.FileThatDoesNotExist).Result);
+      Assert.AreEqual(ReadFileResult.PathNotFound, new LoadFile(files.FileThatDoesNotExist).Result);
     }
 
     [TestMethod]
     public void Result_ShouldBeIllegalFilename_WhenFilenameIsEmpty()
     {
-      Assert.AreEqual(FileLoadResult.IllegalFilename, new LoadFile(String.Empty).Result);
+      Assert.AreEqual(ReadFileResult.IllegalFilename, new LoadFile(String.Empty).Result);
     }
 
     [TestMethod]
     public void Result_ShouldBeIllegalFilename_WhenFilenameContainsIllegalChars()
     {
-      Assert.AreEqual(FileLoadResult.IllegalFilename, new LoadFile(f.FileWithIllegalCharacters).Result);
+      Assert.AreEqual(ReadFileResult.IllegalFilename, new LoadFile(files.FileWithIllegalCharacters).Result);
     }
 
     [TestMethod]
     public void Bytes_ShouldBeLongerThanZero_WhenFileIsLoaded()
     {
-      Assert.IsTrue(new LoadFile(f.FileThatExists).Bytes.Length > 0);
+      Assert.IsTrue(new LoadFile(files.FileThatExists).Bytes.Length > 0);
     }
 
     [TestMethod]
     public void Bytes_ShouldBeZero_WhenFileDoesNotExist()
     {
-      Assert.IsTrue(new LoadFile(f.FileThatDoesNotExist).Bytes.Length == 0);
+      Assert.IsTrue(new LoadFile(files.FileThatDoesNotExist).Bytes.Length == 0);
     }
 
     [TestMethod]
@@ -54,7 +55,7 @@ namespace Mp4HeaderFixTests
     [TestMethod]
     public void Bytes_ShouldBeZero_WhenFilenameContainsIllegalChars()
     {
-      Assert.IsTrue(new LoadFile(f.FileThatDoesNotExist).Bytes.Length == 0);
+      Assert.IsTrue(new LoadFile(files.FileThatDoesNotExist).Bytes.Length == 0);
     }
 
   }

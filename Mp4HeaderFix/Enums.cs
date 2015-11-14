@@ -1,20 +1,22 @@
 ﻿namespace Mp4HeaderFix
 {
-  public enum FileLoadResult
+  public enum ReadFileResult
   {
     Undefined,
-    Loaded,
+    Success,
     IllegalFilename,
-    FileNotFound,
-    PermissionFailure
+    PathNotFound,
+    PermissionFailure,
+    UnknownError
   }
 
-  public enum FileWriteResult
+  public enum WriteFileResult
   {
     Undefined,
-    Saved,
+    Success,
     IllegalFilename,
     NoDataToSave,
-    PermissionsDenied
+    PermissionsDenied,
+    UnknownError
   }
 }

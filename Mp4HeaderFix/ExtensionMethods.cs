@@ -1,6 +1,7 @@
-﻿namespace Mp4HeaderFix
+﻿using System;
+namespace Mp4HeaderFix
 {
-  public static class ByteExtensions
+  public static class ExtensionMethods
   {
     public static byte[] ReplaceBytes(this byte[] originalFile, byte[] oldDimensions, byte[] newData)
     {
@@ -15,5 +16,17 @@
       }
       return result;
     }
+
+    public static byte[] GetBytes(this UInt16 intToConvert)
+    {
+      byte[] result;
+      result = BitConverter.GetBytes(intToConvert);
+      if (BitConverter.IsLittleEndian)
+      {
+        Array.Reverse(result);
+      }
+      return result;
+    }
+
   }
 }

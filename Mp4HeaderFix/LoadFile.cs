@@ -7,14 +7,13 @@ namespace Mp4HeaderFix
   {
     private string filename;
     private byte[] fileAsBytes;
-    private FileLoadResult fileLoadResult;
+    private ReadFileResult readFileResult;
 
-    public FileLoadResult Result
+    public ReadFileResult Result
     {
       get
       {
-        Load();
-        return this.fileLoadResult;
+        return this.readFileResult;
       }
     }
 
@@ -22,7 +21,6 @@ namespace Mp4HeaderFix
     {
       get
       {
-        Load();
         return this.fileAsBytes;
       }
     }
@@ -31,12 +29,13 @@ namespace Mp4HeaderFix
     {
       this.filename = filename;
       this.fileAsBytes = new byte[0];
-      this.fileLoadResult = FileLoadResult.Undefined;
+      this.readFileResult = ReadFileResult.Undefined;
+      Load();
     }
 
     private void Load()
     {
-      if (this.fileLoadResult != FileLoadResult.Undefined)
+      if (this.readFileResult != ReadFileResult.Undefined)
       {
         return;
       }
@@ -47,7 +46,7 @@ namespace Mp4HeaderFix
       }
       catch (Exception ex)
       {
-        this.fileLoadResult = FileLoadResult.IllegalFilename;
+        this.readFileResult = ReadFileResult.IllegalFilename;
         return;
       }
 
@@ -57,13 +56,13 @@ namespace Mp4HeaderFix
       }
       catch (FileNotFoundException ex)
       {
-        this.fileLoadResult = FileLoadResult.FileNotFound;
+        this.readFileResult = ReadFileResult.PathNotFound;
         return;
       }
 
       if (this.fileAsBytes != null && this.fileAsBytes.Length > 0)
       {
-        this.fileLoadResult = FileLoadResult.Loaded;
+        this.readFileResult = ReadFileResult.Success;
       }
     }
 
