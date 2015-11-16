@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Mp4HeaderFix
 {
-  public class PatternMatch
+  internal class PatternMatch
   {
     private byte[] patternToFind;
     private byte[] arrayToSearch;

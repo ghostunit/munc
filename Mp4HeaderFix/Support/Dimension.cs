@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Mp4HeaderFix
 {
+  /// <summary>
+  /// Represents the width and height in pixels of a video file.
+  /// </summary>
   public class Dimension
   {
     private UInt16 horizontal;

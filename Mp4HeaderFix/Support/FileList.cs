@@ -9,7 +9,7 @@ namespace Mp4HeaderFix
   {
     private string path;
     private List<string> fileLocationList;
-    private ReadFileResult readFileResult;
+    private FileResult fileResult;
 
     internal int Length
     {
@@ -27,11 +27,11 @@ namespace Mp4HeaderFix
       }
     }
 
-    internal ReadFileResult Result
+    internal FileResult Result
     {
       get
       {
-        return readFileResult;
+        return fileResult;
       }
     }
 
@@ -49,7 +49,7 @@ namespace Mp4HeaderFix
       }
       catch (Exception ex)
       {
-        readFileResult = ReadFileResult.IllegalFilename;
+        fileResult = FileResult.IllegalFilename;
         return;
       }
 
@@ -57,13 +57,13 @@ namespace Mp4HeaderFix
       if (!fileAttributes.HasFlag(FileAttributes.Directory))
       {
         fileLocationList = new List<string> { this.path };
-        this.readFileResult = ReadFileResult.Success;
+        this.fileResult = FileResult.Success;
         return;
       }
 
       if (!Directory.Exists(this.path))
       {
-        this.readFileResult = ReadFileResult.PathNotFound;
+        this.fileResult = FileResult.PathNotFound;
         return;
       }
 
@@ -73,16 +73,12 @@ namespace Mp4HeaderFix
       }
       catch (Exception ex)
       {
-        readFileResult = ReadFileResult.UnknownError;
+        fileResult = FileResult.UnknownError;
         return;
       }
 
-      readFileResult = ReadFileResult.Success;
+      fileResult = FileResult.Success;
     }
 
   }
 }
-
-
-
-

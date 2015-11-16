@@ -1,41 +1,19 @@
-﻿
-namespace Mp4HeaderFix
+﻿namespace Mp4HeaderFix
 {
+  /// <summary>
+  /// Provides information on where the fixed files should be stored, and how to modify their names.
+  /// </summary>
   public class FileSaveRule
   {
-    private string filenamePrefix;
-    private string filenameSuffix;
-    private string savePath;
-
-    internal string FilenamePrefix
-    {
-      get
-      {
-        return this.filenamePrefix;
-      }
-    }
-
-    internal string FilenameSuffix
-    {
-      get
-      {
-        return this.filenameSuffix;
-      }
-    }
-
-    internal string SavePath
-    {
-      get
-      {
-        return this.savePath;
-      }
-    }
+    internal string FilenamePrefix { get; private set; }
+    internal string FilenameSuffix { get; private set; }
+    internal string SavePath { get; private set; }
 
     public FileSaveRule(string filenamePrefix, string filenameSuffix, string savePath)
     {
-      this.filenamePrefix = filenamePrefix;
-      this.filenameSuffix = filenameSuffix;
-      this.savePath = savePath;
+      FilenamePrefix = filenamePrefix;
+      FilenameSuffix = filenameSuffix;
+      SavePath = savePath;
     }
   }
 }
