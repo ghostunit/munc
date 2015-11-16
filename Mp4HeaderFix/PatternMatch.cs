@@ -12,7 +12,7 @@ namespace Mp4HeaderFix
     /// <summary>
     /// Returns true if an instance of the pattern was found in the array.
     /// </summary>
-    public bool Success
+    internal bool Success
     {
       get
       {
@@ -32,7 +32,7 @@ namespace Mp4HeaderFix
     /// <summary>
     /// The zero-based index of the pattern found within the array.
     /// </summary>
-    public int Index
+    internal int Index
     {
       get
       {
@@ -46,7 +46,7 @@ namespace Mp4HeaderFix
     /// </summary>
     /// <param name="patternToFind">The byte array to find within the larger array</param>
     /// <param name="arrayToSearch">The byte array to search inside of</param>
-    public PatternMatch(byte[] patternToFind, byte[] arrayToSearch)
+    internal PatternMatch(byte[] patternToFind, byte[] arrayToSearch)
     {
       this.patternToFind = patternToFind;
       this.arrayToSearch = arrayToSearch;

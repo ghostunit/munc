@@ -9,6 +9,14 @@ namespace Mp4HeaderFix
     private byte[] fileAsBytes;
     private ReadFileResult readFileResult;
 
+    public string Path
+    {
+      get
+      {
+        return this.filename;
+      }
+    }
+
     public ReadFileResult Result
     {
       get
@@ -17,7 +25,7 @@ namespace Mp4HeaderFix
       }
     }
 
-    public byte[] Bytes
+    internal byte[] Bytes
     {
       get
       {
@@ -42,7 +50,7 @@ namespace Mp4HeaderFix
 
       try
       {
-        Path.GetFullPath(this.filename);
+        System.IO.Path.GetFullPath(this.filename);
       }
       catch (Exception ex)
       {

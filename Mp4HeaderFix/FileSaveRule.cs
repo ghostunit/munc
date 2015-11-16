@@ -7,7 +7,7 @@ namespace Mp4HeaderFix
     private string filenameSuffix;
     private string savePath;
 
-    public string FilenamePrefix
+    internal string FilenamePrefix
     {
       get
       {
@@ -15,7 +15,7 @@ namespace Mp4HeaderFix
       }
     }
 
-    public string FilenameSuffix
+    internal string FilenameSuffix
     {
       get
       {
@@ -23,7 +23,7 @@ namespace Mp4HeaderFix
       }
     }
 
-    public string SavePath
+    internal string SavePath
     {
       get
       {

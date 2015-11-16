@@ -5,13 +5,13 @@ using System.IO;
 
 namespace Mp4HeaderFix
 {
-  public class FileList
+  internal class FileList
   {
     private string path;
     private List<string> fileLocationList;
     private ReadFileResult readFileResult;
 
-    public int Length
+    internal int Length
     {
       get
       {
@@ -19,7 +19,7 @@ namespace Mp4HeaderFix
       }
     }
 
-    public List<string> Files
+    internal List<string> Files
     {
       get
       {
@@ -27,7 +27,7 @@ namespace Mp4HeaderFix
       }
     }
 
-    public ReadFileResult Result
+    internal ReadFileResult Result
     {
       get
       {
@@ -35,7 +35,7 @@ namespace Mp4HeaderFix
       }
     }
 
-    public FileList(string path)
+    internal FileList(string path)
     {
       this.path = path;
       LoadFileList();

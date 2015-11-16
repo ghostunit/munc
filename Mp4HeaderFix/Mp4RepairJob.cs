@@ -39,28 +39,37 @@ namespace Mp4HeaderFix
       this.writeFailures = new List<WriteFile>();
     }
 
-    public bool Run()
+    public Dictionary<string, string> Run()
     {
-      bool result = true;
+      Dictionary<string, string> result = new Dictionary<string, string>();
 
       List<string> filenames = new FileList(this.pathToOriginalFiles).Files;
       foreach (string filename in filenames)
       {
-        LoadFile originalFile = new LoadFile(filename);
-        if (originalFile.Result != ReadFileResult.Success)
+        bool success = true;
+
+        LoadFile loadFile = new LoadFile(filename);
+        if (loadFile.Result != ReadFileResult.Success)
         {
-          this.loadFailures.Add(originalFile);
-          result = false;
+          this.loadFailures.Add(loadFile);
+          success = false;
         }
 
-        byte[] newBytes = originalFile.Bytes.ReplaceBytes(this.oldDimensions.AsBytes, this.newDimensions.AsBytes);
-        string newFilename = CreateDestinationPath(filename);
+        ModifiedFile modifiedFile = new ModifiedFile(originalFile.Bytes, this.oldDimensions.AsBytes, this.newDimensions.AsBytes);
 
-        WriteFile newFile = new WriteFile(newBytes, newFilename);
-        if (newFile.Result != WriteFileResult.Success)
+        
+
+        string newFilename = CreateDestinationPath(filename);
+        WriteFile writeFile = new WriteFile(newBytes, newFilename);
+        if (writeFile.Result != WriteFileResult.Success)
         {
-          this.writeFailures.Add(newFile);
-          result = false;
+          this.writeFailures.Add(writeFile);
+          success = false;
+        }
+
+        if (success)
+        {
+          result.Add(loadFile.Path, writeFile.Path);
         }
       }
 

@@ -10,6 +10,14 @@
     UnknownError
   }
 
+  public enum ModifyFileResult
+  {
+    Undefined,
+    Success,
+    NoFileToModify,
+    PatternNotFound,
+  }
+
   public enum WriteFileResult
   {
     Undefined,

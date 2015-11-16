@@ -8,6 +8,7 @@ namespace Mp4HeaderFixTests
   [TestClass]
   public class LoadFileTests
   {
+    /*
     SampleFilenames files = new SampleFilenames();
 
     [TestMethod]
@@ -57,6 +58,6 @@ namespace Mp4HeaderFixTests
     {
       Assert.IsTrue(new LoadFile(files.FileThatDoesNotExist).Bytes.Length == 0);
     }
-
+    */
   }
 }

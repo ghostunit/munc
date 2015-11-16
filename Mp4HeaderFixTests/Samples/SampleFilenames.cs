@@ -1,15 +1,16 @@
 ﻿using System;
 namespace Mp4HeaderFixTests.Samples
 {
-  public class SampleFilenames
+  public static class SampleFilenames
   {
-    public string Pwd = Environment.CurrentDirectory;
-    public string TempDirectory = Environment.CurrentDirectory + @"\TempDirectory\";
-    public string TempDirectoryWithIllegalCharacters = Environment.CurrentDirectory + @"\5&^^%@*\";
-    public string FileThatExistsInTempDirectory = Environment.CurrentDirectory + @"\TempDirectory\SampleFile_001.bin";
-    public string FileThatExists = Environment.CurrentDirectory + @"\TestFiles\VideoWithBadHeader.mp4";
-    public string FileThatDoesNotExist = @"c:\doesNotExist.mp4";
-    public string FileWithIllegalCharacters = ":sd34/.,";
-    public string TemporaryFileToWrite = @"c:\temp\Mp4HeaderFix_001.bin";
+    public static string Pwd = Environment.CurrentDirectory;
+    public static string TempDirectory = Environment.CurrentDirectory + @"\TempDirectory\";
+    public static string TempDestinationDirectory = Environment.CurrentDirectory + @"\TempDirectory\Converted\";
+    public static string TempDirectoryWithIllegalCharacters = Environment.CurrentDirectory + @"\5&^^%@*\";
+    public static string FileThatExistsInTempDirectory = Environment.CurrentDirectory + @"\TempDirectory\SampleFile_001.bin";
+    public static string FileThatExists = Environment.CurrentDirectory + @"\TestFiles\VideoWithBadHeader.mp4";
+    public static string FileThatDoesNotExist = @"c:\doesNotExist.mp4";
+    public static string FileWithIllegalCharacters = ":sd34/.,";
+    public static string TemporaryFileToWrite = @"c:\temp\Mp4HeaderFix_001.bin";
   }
 }

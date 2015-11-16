@@ -11,7 +11,7 @@ namespace Mp4HeaderFix
     private UInt16 horizontal;
     private UInt16 vertical;
 
-    public byte[] AsBytes
+    internal byte[] AsBytes
     {
       get
       {

@@ -59,15 +59,5 @@ namespace Mp4HeaderFixTests.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] VideoWithBadHeader {
-            get {
-                object obj = ResourceManager.GetObject("VideoWithBadHeader", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
     }
 }

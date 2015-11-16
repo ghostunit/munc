@@ -8,6 +8,7 @@ namespace Mp4HeaderFixTests
   [TestClass]
   public class WriteFileTests
   {
+    /*
     SampleFilenames files = new SampleFilenames();
     SampleByteArrays bytes = new SampleByteArrays();
 
@@ -59,6 +60,6 @@ namespace Mp4HeaderFixTests
       Assert.AreEqual(WriteFileResult.Success, writeFile.Result);
       System.IO.File.Delete(files.TemporaryFileToWrite);
     }
-
+    */
   }
 }

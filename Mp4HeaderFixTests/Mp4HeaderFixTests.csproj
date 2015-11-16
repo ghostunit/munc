@@ -51,17 +51,15 @@
   </Choose>
   <ItemGroup>
     <Compile Include="LoadFileTests.cs" />
-    <Compile Include="PatternMatchTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Samples\SampleMp4RepairJobs.cs" />
     <Compile Include="Samples\SampleByteArrays.cs" />
-    <Compile Include="Samples\SampleFileList.cs" />
     <Compile Include="Samples\SampleFilenames.cs" />
-    <Compile Include="FileListTests.cs" />
     <Compile Include="DimensionTests.cs" />
     <Compile Include="Mp4RepairJobTests.cs" />
     <Compile Include="WriteFileTests.cs" />
@@ -76,12 +74,8 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="TestFiles\VideoWithBadHeader.mp4">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

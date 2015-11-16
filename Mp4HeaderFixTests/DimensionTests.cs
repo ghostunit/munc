@@ -7,8 +7,7 @@ namespace Mp4HeaderFixTests
   [TestClass]
   public class DimensionTests
   {
-    SampleByteArrays bytes = new SampleByteArrays();
-
+    /*
     [TestMethod]
     public void AsBytes_ShouldReturn014000F0_For320x240()
     {
@@ -26,5 +25,6 @@ namespace Mp4HeaderFixTests
         Assert.AreEqual(bytes.Dimensions640x480[i], new Dimension(640, 480).AsBytes[i]);
       }
     }
+    */
   }
 }

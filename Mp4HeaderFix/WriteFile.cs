@@ -9,7 +9,15 @@ namespace Mp4HeaderFix
     private string filename;
     private WriteFileResult writeFileResult;
 
-    public byte[] Bytes
+    public string Path
+    {
+      get
+      {
+        return this.filename;
+      }
+    }
+
+    internal byte[] Bytes
     {
       get
       {
@@ -48,7 +56,7 @@ namespace Mp4HeaderFix
 
       try
       {
-        Path.GetFullPath(this.filename);
+        System.IO.Path.GetFullPath(this.filename);
       }
       catch (Exception ex)
       {
@@ -58,7 +66,7 @@ namespace Mp4HeaderFix
 
       try
       {
-        Directory.CreateDirectory(Path.GetDirectoryName(this.filename));
+        Directory.CreateDirectory(System.IO.Path.GetDirectoryName(this.filename));
         FileStream fileStream = new FileStream(this.filename, FileMode.Create, FileAccess.Write);
         fileStream.Write(this.fileAsBytes, 0, this.fileAsBytes.Length);
         fileStream.Close();

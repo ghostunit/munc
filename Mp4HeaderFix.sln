@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mp4HeaderFix", "Mp4HeaderFix\Mp4HeaderFix.csproj", "{4FA26E56-40AE-454C-BD8A-256D7A421191}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MhfConsoleApp", "MhfConsoleApp\MhfConsoleApp.csproj", "{8C99DD0C-E7B2-4B07-8CD4-E782F93E6272}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mp4HeaderFixTests", "Mp4HeaderFixTests\Mp4HeaderFixTests.csproj", "{CFA7B8FB-D7C8-40FE-8BB8-C68AE180B97D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mp4HeaderFixGui", "Mp4HeaderFixGui\Mp4HeaderFixGui.csproj", "{6D80232E-1CC4-46BB-B96D-C54947A8991B}"
@@ -19,10 +17,6 @@ Global
 		{4FA26E56-40AE-454C-BD8A-256D7A421191}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4FA26E56-40AE-454C-BD8A-256D7A421191}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4FA26E56-40AE-454C-BD8A-256D7A421191}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8C99DD0C-E7B2-4B07-8CD4-E782F93E6272}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8C99DD0C-E7B2-4B07-8CD4-E782F93E6272}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8C99DD0C-E7B2-4B07-8CD4-E782F93E6272}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8C99DD0C-E7B2-4B07-8CD4-E782F93E6272}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CFA7B8FB-D7C8-40FE-8BB8-C68AE180B97D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CFA7B8FB-D7C8-40FE-8BB8-C68AE180B97D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CFA7B8FB-D7C8-40FE-8BB8-C68AE180B97D}.Release|Any CPU.ActiveCfg = Release|Any CPU
