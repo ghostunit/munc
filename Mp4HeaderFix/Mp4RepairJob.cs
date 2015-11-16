@@ -37,6 +37,7 @@ namespace Mp4HeaderFix
       this.oldDimensions = oldDimensions;
       this.newDimensions = newDimensions;
       this.fileSaveRule = fileSaveRule;
+      this.jobResults = new List<JobResult>();
     }
 
     /// <summary>
@@ -46,15 +47,17 @@ namespace Mp4HeaderFix
     {
       int jobID = 0;
       List<string> filenames = new FileList(this.pathToOriginalFiles).Files;
+      filenames.Sort();
 
       foreach (string filename in filenames)
       {
-        jobID++;
         LoadFile loadFile = new LoadFile(filename);
         Destination destination = new Destination(this.fileSaveRule, loadFile.Path);
         ModifiedFile modifiedFile = new ModifiedFile(loadFile.Bytes, this.oldDimensions.AsBytes, this.newDimensions.AsBytes, destination.Path);
         WriteFile writeFile = new WriteFile(modifiedFile);
         JobResult jobResult = new JobResult(jobID, loadFile, modifiedFile, writeFile);
+        this.jobResults.Add(jobResult);
+        jobID++;
       }
 
     }

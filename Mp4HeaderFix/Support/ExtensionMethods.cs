@@ -3,7 +3,6 @@ namespace Mp4HeaderFix
 {
   internal static class ExtensionMethods
   {
-
     internal static byte[] GetBytes(this UInt16 intToConvert)
     {
       byte[] result;
@@ -14,6 +13,5 @@ namespace Mp4HeaderFix
       }
       return result;
     }
-
   }
 }

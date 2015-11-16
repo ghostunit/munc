@@ -50,13 +50,16 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="FileListTests.cs" />
     <Compile Include="LoadFileTests.cs" />
+    <Compile Include="PatternMatchTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Samples\SampleBinaryFile.cs" />
     <Compile Include="Samples\SampleMp4RepairJobs.cs" />
     <Compile Include="Samples\SampleByteArrays.cs" />
     <Compile Include="Samples\SampleFilenames.cs" />

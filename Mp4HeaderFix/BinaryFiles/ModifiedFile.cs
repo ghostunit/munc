@@ -22,12 +22,14 @@
 
       if (this.fileAsBytes == null || this.fileAsBytes.Length == 0)
       {
+        this.fileAsBytes = new byte[0];
         this.fileResult = FileResult.NoFileToModify;
       }
 
       PatternMatch patternMatch = new PatternMatch(this.oldData, this.fileAsBytes);
       if (!patternMatch.Success)
       {
+        this.fileAsBytes = new byte[0];
         this.fileResult = FileResult.PatternNotFound;
       }
       else
@@ -39,6 +41,5 @@
         this.fileAsBytes[patternMatch.Index + 3] = this.newData[3];
       }
     }
-
   }
 }

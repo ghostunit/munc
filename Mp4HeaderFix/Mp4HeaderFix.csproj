@@ -39,7 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BinaryFiles\IBinaryFile.cs" />
+    <Compile Include="BinaryFiles\BinaryFile.cs" />
     <Compile Include="BinaryFiles\ModifiedFile.cs" />
     <Compile Include="Support\DestinationPath.cs" />
     <Compile Include="Support\ExtensionMethods.cs" />
@@ -49,7 +49,7 @@
     <Compile Include="FileSaveRule.cs" />
     <Compile Include="BinaryFiles\LoadFile.cs" />
     <Compile Include="Mp4RepairJob.cs" />
-    <Compile Include="Support\JobResult.cs" />
+    <Compile Include="JobResult.cs" />
     <Compile Include="Support\PatternMatch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BinaryFiles\WriteFile.cs" />

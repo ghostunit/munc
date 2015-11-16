@@ -10,6 +10,35 @@
     private FileResult writeFileResult;
 
     /// <summary>
+    /// The zero-based index of this job result
+    /// </summary>
+    public int JobID
+    {
+      get
+      {
+        return this.jobID;
+      }
+    }
+
+    /// <summary>
+    /// Returns true if the job reported a failure type of "none"
+    /// </summary>
+    public bool Passed
+    {
+      get
+      {
+        if (FailurePoint == FailureType.None)
+        {
+          return true;
+        }
+        else
+        {
+          return false;
+        }
+      }
+    }
+
+    /// <summary>
     /// Gets the point in which this file's repair failed
     /// </summary>
     public FailureType FailurePoint
@@ -117,7 +146,7 @@
               result = "Could not modify the file due to an unknown error.";
               break;
           }
-          
+
           #endregion
           break;
 
@@ -188,6 +217,5 @@
 
       return result;
     }
-
   }
 }

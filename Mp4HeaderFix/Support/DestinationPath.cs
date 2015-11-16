@@ -36,6 +36,5 @@ namespace Mp4HeaderFix
 
       return result;
     }
-
   }
 }

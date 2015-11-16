@@ -29,6 +29,5 @@
         return this.fileResult;
       }
     }
-
   }
 }

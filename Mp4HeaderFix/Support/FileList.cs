@@ -38,6 +38,8 @@ namespace Mp4HeaderFix
     internal FileList(string path)
     {
       this.path = path;
+      this.fileLocationList = new List<string>();
+      this.fileResult = FileResult.Undefined;
       LoadFileList();
     }
 
@@ -49,36 +51,38 @@ namespace Mp4HeaderFix
       }
       catch (Exception ex)
       {
-        fileResult = FileResult.IllegalFilename;
+        this.fileLocationList = new List<string> { this.path };
+        this.fileResult = FileResult.IllegalFilename;
         return;
       }
 
       FileAttributes fileAttributes = File.GetAttributes(this.path);
       if (!fileAttributes.HasFlag(FileAttributes.Directory))
       {
-        fileLocationList = new List<string> { this.path };
+        this.fileLocationList = new List<string> { this.path };
         this.fileResult = FileResult.Success;
         return;
       }
 
       if (!Directory.Exists(this.path))
       {
+        this.fileLocationList = new List<string> { this.path };
         this.fileResult = FileResult.PathNotFound;
         return;
       }
 
       try
       {
-        this.fileLocationList = Directory.GetFiles(this.path).ToList<string>();
+        this.fileLocationList = Directory.GetFiles(this.path, "*.mp4").ToList<string>();
       }
       catch (Exception ex)
       {
-        fileResult = FileResult.UnknownError;
+        this.fileLocationList = new List<string> { this.path };
+        this.fileResult = FileResult.UnknownError;
         return;
       }
 
-      fileResult = FileResult.Success;
+      this.fileResult = FileResult.Success;
     }
-
   }
 }

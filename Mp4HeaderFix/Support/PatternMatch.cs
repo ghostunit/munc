@@ -88,6 +88,5 @@ namespace Mp4HeaderFix
       }
       return -1;
     }
-
   }
 }
