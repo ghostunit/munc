@@ -1,13 +1,21 @@
 ﻿using System;
 namespace Mp4HeaderFix
 {
-  internal class ModifiedFile
+  internal class ModifiedFile : IBinaryFile
   {
     private byte[] originalFile;
     private byte[] oldData;
     private byte[] newData;
     private ModifyFileResult modifyFileResult;
 
+    public byte[] Bytes
+    {
+      get
+      {
+        return ReplaceBytes();
+      }
+    }
+    
     internal ModifiedFile(byte[] originalFile, byte[] oldData, byte[] newData)
     {
       this.originalFile = originalFile;
@@ -16,16 +24,16 @@ namespace Mp4HeaderFix
       this.modifyFileResult = ModifyFileResult.Undefined;
     }
 
-    internal byte[] ReplaceBytes(byte[] originalFile, byte[] oldDimensions, byte[] newData)
+    internal byte[] ReplaceBytes()
     {
-      byte[] result = originalFile;
+      byte[] result = this.originalFile;
 
-      if (originalFile == null || originalFile.Length == 0)
+      if (result == null || result.Length == 0)
       {
         this.modifyFileResult = ModifyFileResult.NoFileToModify;
       }
 
-      PatternMatch patternMatch = new PatternMatch(oldDimensions, originalFile);
+      PatternMatch patternMatch = new PatternMatch(this.oldData, result);
       if (!patternMatch.Success)
       {
         this.modifyFileResult = ModifyFileResult.PatternNotFound;
@@ -33,10 +41,10 @@ namespace Mp4HeaderFix
       else
       {
         this.modifyFileResult = ModifyFileResult.Success;
-        result[patternMatch.Index] = newData[0];
-        result[patternMatch.Index + 1] = newData[1];
-        result[patternMatch.Index + 2] = newData[2];
-        result[patternMatch.Index + 3] = newData[3];
+        result[patternMatch.Index] = this.newData[0];
+        result[patternMatch.Index + 1] = this.newData[1];
+        result[patternMatch.Index + 2] = this.newData[2];
+        result[patternMatch.Index + 3] = this.newData[3];
       }
 
       return result;

@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IBinaryFile.cs" />
     <Compile Include="ModifiedFile.cs" />
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="Dimension.cs" />

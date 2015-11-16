@@ -3,7 +3,7 @@ using System.IO;
 
 namespace Mp4HeaderFix
 {
-  public class WriteFile
+  public class WriteFile : IBinaryFile
   {
     private byte[] fileAsBytes;
     private string filename;
@@ -17,7 +17,7 @@ namespace Mp4HeaderFix
       }
     }
 
-    internal byte[] Bytes
+    public byte[] Bytes
     {
       get
       {

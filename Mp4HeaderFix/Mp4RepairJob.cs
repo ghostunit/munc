@@ -55,12 +55,12 @@ namespace Mp4HeaderFix
           success = false;
         }
 
-        ModifiedFile modifiedFile = new ModifiedFile(originalFile.Bytes, this.oldDimensions.AsBytes, this.newDimensions.AsBytes);
+        ModifiedFile modifiedFile = new ModifiedFile(loadFile.Bytes, this.oldDimensions.AsBytes, this.newDimensions.AsBytes);
 
         
 
         string newFilename = CreateDestinationPath(filename);
-        WriteFile writeFile = new WriteFile(newBytes, newFilename);
+        WriteFile writeFile = new WriteFile(modifiedFile.Bytes, newFilename);
         if (writeFile.Result != WriteFileResult.Success)
         {
           this.writeFailures.Add(writeFile);
