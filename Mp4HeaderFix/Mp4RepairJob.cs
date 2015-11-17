@@ -18,10 +18,7 @@ namespace Mp4HeaderFix
     /// </summary>
     public List<JobResult> Results
     {
-      get
-      {
-        return this.jobResults;
-      }
+      get { return this.jobResults; }
     }
 
     /// <summary>
@@ -61,5 +58,6 @@ namespace Mp4HeaderFix
       }
 
     }
+
   }
 }

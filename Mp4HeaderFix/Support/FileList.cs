@@ -84,5 +84,6 @@ namespace Mp4HeaderFix
 
       this.fileResult = FileResult.Success;
     }
+
   }
 }

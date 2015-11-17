@@ -24,5 +24,6 @@ namespace Mp4HeaderFixTests
         Assert.AreEqual(SampleByteArrays.Dimensions640x480[i], new Dimension(640, 480).AsBytes[i]);
       }
     }
+
   }
 }

@@ -12,10 +12,7 @@ namespace Mp4HeaderFix
 
     internal byte[] AsBytes
     {
-      get
-      {
-        return ReturnDimensionsAsByteArray();
-      }
+      get { return ReturnDimensionsAsByteArray(); }
     }
 
     public Dimension(UInt16 horizontal, UInt16 vertical)
@@ -38,5 +35,6 @@ namespace Mp4HeaderFix
 
       return result;
     }
+
   }
 }

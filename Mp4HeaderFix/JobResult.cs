@@ -14,10 +14,7 @@
     /// </summary>
     public int JobID
     {
-      get
-      {
-        return this.jobID;
-      }
+      get { return this.jobID; }
     }
 
     /// <summary>
@@ -43,10 +40,7 @@
     /// </summary>
     public FailureType FailurePoint
     {
-      get
-      {
-        return DecideFailureType();
-      }
+      get { return DecideFailureType(); }
     }
 
     /// <summary>
@@ -54,10 +48,7 @@
     /// </summary>
     public FileResult FailureResult
     {
-      get
-      {
-        return GetFileResultCode();
-      }
+      get { return GetFileResultCode(); }
     }
 
     /// <summary>
@@ -65,10 +56,7 @@
     /// </summary>
     public string Status
     {
-      get
-      {
-        return CreateHumanReadableFailureMessage();
-      }
+      get { return CreateHumanReadableFailureMessage(); }
     }
 
     /// <summary>
@@ -76,10 +64,7 @@
     /// </summary>
     public string OriginalFilename
     {
-      get
-      {
-        return this.originalPath;
-      }
+      get { return this.originalPath; }
     }
 
     /// <summary>
@@ -87,10 +72,7 @@
     /// </summary>
     public string NewFilename
     {
-      get
-      {
-        return newPath;
-      }
+      get { return newPath; }
     }
 
     internal JobResult(int jobID, LoadFile loadFile, ModifiedFile modifiedFile, WriteFile writeFile)
@@ -217,5 +199,6 @@
 
       return result;
     }
+
   }
 }

@@ -9,10 +9,7 @@ namespace Mp4HeaderFix
 
     internal string Path
     {
-      get
-      {
-        return CreateDestinationPath();
-      }
+      get  {  return CreateDestinationPath();   }
     }
 
     internal Destination(FileSaveRule fileSaveRule, string pathToModify)
@@ -36,5 +33,6 @@ namespace Mp4HeaderFix
 
       return result;
     }
+
   }
 }
