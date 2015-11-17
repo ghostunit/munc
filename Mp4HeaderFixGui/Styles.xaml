@@ -26,10 +26,6 @@
     <Setter Property="Width" Value="149"/>
   </Style>
 
-  <Style TargetType="xctk:WatermarkTextBox" x:Key="InvalidData">
-    <Setter Property="BorderBrush" Value="Red"/>
-  </Style>
-
 
   <!--Button Styles-->
   <Style TargetType="Button" x:Key="BasicButton" BasedOn="{StaticResource TopLeft}">
