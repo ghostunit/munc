@@ -81,14 +81,62 @@ namespace Mp4HeaderFixGui
 
     internal static bool IsValidDestinationPath(this string stringToTest)
     {
-      bool result = false;
+      bool result = true;
 
       if (String.IsNullOrEmpty(stringToTest))
+      {
+        return false;
+      }
+
+      if (stringToTest.Any(Path.GetInvalidPathChars().Contains))
       {
         result = false;
       }
 
-      if (stringToTest.Any(Path.GetInvalidFileNameChars().Contains))
+      return result;
+    }
+
+    internal static string AppendBackslashIfNecessary(this string stringToTest)
+    {
+      string result = String.Empty;
+
+      if (stringToTest.EndsWith(@"\"))
+      {
+        result = stringToTest;
+      }
+      else
+      {
+        result = stringToTest + @"\";
+      }
+
+      return result;
+    }
+
+    internal static bool DoPathsMatch(string sourcePath, string destinationPath)
+    {
+      bool result = true;
+
+      destinationPath = destinationPath.AppendBackslashIfNecessary();
+
+      if (sourcePath == destinationPath)
+      {
+        result = false;
+      }
+
+      try
+      {
+        FileAttributes fileAttributes = File.GetAttributes(sourcePath);
+        if (!fileAttributes.HasFlag(FileAttributes.Directory))
+        {
+          sourcePath = Path.GetDirectoryName(sourcePath);
+        }
+      }
+      catch (Exception ex)
+      {
+        result = false;
+      }
+
+      if (sourcePath == destinationPath)
       {
         result = false;
       }

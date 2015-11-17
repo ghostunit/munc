@@ -56,13 +56,29 @@ namespace Mp4HeaderFix
         return;
       }
 
-      FileAttributes fileAttributes = File.GetAttributes(this.path);
-      if (!fileAttributes.HasFlag(FileAttributes.Directory))
+      try
+      {
+        FileAttributes fileAttributes = File.GetAttributes(this.path);
+        if (!fileAttributes.HasFlag(FileAttributes.Directory))
+        {
+          this.fileLocationList = new List<string> { this.path };
+          this.fileResult = FileResult.Success;
+          return;
+        }
+      }
+      catch (FileNotFoundException ex)
       {
         this.fileLocationList = new List<string> { this.path };
-        this.fileResult = FileResult.Success;
+        this.fileResult = FileResult.PathNotFound;
         return;
       }
+      catch (Exception ex)
+      {
+        this.fileLocationList = new List<string> { this.path };
+        this.fileResult = FileResult.UnknownError;
+        return;
+      }
+
 
       if (!Directory.Exists(this.path))
       {

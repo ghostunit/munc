@@ -8,9 +8,11 @@
   <Grid>
 
     <!--Source and Destination Paths-->
-    <xctk:WatermarkTextBox Name="txtSourcePath" Watermark="C:\Select\Source\Folder\Or\File\" Style="{StaticResource FolderPath}" Margin="12,12,0,0"/>
-    <Button Name="btnSelectSource" Content="Source" Style="{StaticResource FolderPathButton}" Margin="205,12,0,0"/>
-    <xctk:WatermarkTextBox Name="txtDestinationPath" Watermark="C:\Select\Destination\Folder\" Style="{StaticResource FolderPath}" Margin="12,47,0,0" />
+    <xctk:WatermarkTextBox Name="txtSourcePath" Watermark="C:\Select\Source\" Style="{StaticResource FolderPath}" Margin="12,12,0,0" Width="153"/>
+    <!--<Button Name="btnSelectSource" Content="Source" Style="{StaticResource FolderPathButton}" Margin="205,12,0,0"/>-->
+    <Button Name="btnSourceFile" Content="File" Style="{StaticResource FolderPathButton}" Margin="173,12,0,0" Width="50"/>
+    <Button Name="btnSourceFolder" Content="Folder" Style="{StaticResource FolderPathButton}" Margin="230,12,0,0" Width="50"/>
+    <xctk:WatermarkTextBox Name="txtDestinationPath" Watermark="C:\Select\Destination\" Style="{StaticResource FolderPath}" Margin="12,47,0,0" />
     <Button Name="btnSelectDestination" Content="Destination" Style="{StaticResource FolderPathButton}" Margin="205,48,0,0"/>
 
     <!--Original and Actual Paths-->
@@ -39,7 +41,7 @@
     </GroupBox>
 
     <!--Start Button-->
-    <Button Content="Start Conversion" Style="{StaticResource GreenButton}" Margin="10,329,0,0"/>
+    <Button Name="btnOk" Content="Start Conversion" Style="{StaticResource GreenButton}" Margin="10,329,0,0"/>
 
   </Grid>
 </Window>

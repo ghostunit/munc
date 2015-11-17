@@ -2,8 +2,11 @@
 using System.Windows;
 using Mp4HeaderFix;
 using System.Windows.Controls;
-using Xceed.Wpf.Toolkit;
 using System.Windows.Media;
+using System.Collections.Generic;
+using Xceed.Wpf.Toolkit;
+using System.IO;
+using Microsoft.WindowsAPICodePack.Dialogs;
 
 namespace Mp4HeaderFixGui
 {
@@ -36,16 +39,102 @@ namespace Mp4HeaderFixGui
       this.txtFilenamePrefix.TextChanged += txtFilenamePrefixOrSuffix_TextChanged;
       this.txtFilenameSuffix.TextChanged += txtFilenamePrefixOrSuffix_TextChanged;
 
+      // Button events
+      this.btnOk.Click += btnOk_Click;
+      this.btnSourceFile.Click += btnSourceFile_Click;
+      this.btnSourceFolder.Click += btnSourceFolder_Click;
+      this.btnSelectDestination.Click += btnSelectDestination_Click;
+
       #endregion
 
     }
 
-    private Mp4RepairJob LaunchRepairJob()
+    private Mp4RepairJob PrepareRepairJob()
     {
-      Dimension orginalDimensions = new Dimension(this.txtOriginalDimensionsWidth.Text.ToUInt16(), this.txtOriginalDimensionsHeight.Text.ToUInt16());
-      Dimension actualDimensions = new Dimension(this.txtActualDimensionsWidth.Text.ToUInt16(), this.txtActualDimensionsHeight.Text.ToUInt16());
-      FileSaveRule fileSaveRule = new FileSaveRule(this.txtFilenamePrefix.Text, this.txtFilenameSuffix.Text, this.txtDestinationPath.Text);
-      return new Mp4RepairJob(this.txtSourcePath.Text, orginalDimensions, actualDimensions, fileSaveRule);
+      String sourcePath = String.Empty;
+      Dimension orginalDimensions = new Dimension(0, 0);
+      Dimension actualDimensions = new Dimension(0, 0);
+      FileSaveRule fileSaveRule = new FileSaveRule("", "", "");
+
+      if (ValidateMp4RepairJob())
+      {
+        sourcePath = this.txtSourcePath.Text;
+        orginalDimensions = new Dimension(this.txtOriginalDimensionsWidth.Text.ToUInt16(), this.txtOriginalDimensionsHeight.Text.ToUInt16());
+        actualDimensions = new Dimension(this.txtActualDimensionsWidth.Text.ToUInt16(), this.txtActualDimensionsHeight.Text.ToUInt16());
+        fileSaveRule = new FileSaveRule(this.txtFilenamePrefix.Text, this.txtFilenameSuffix.Text, this.txtDestinationPath.Text.AppendBackslashIfNecessary());
+      }
+
+      Mp4RepairJob mp4RepairJob = new Mp4RepairJob(sourcePath, orginalDimensions, actualDimensions, fileSaveRule);
+
+      return mp4RepairJob;
+    }
+
+    private bool ValidateMp4RepairJob()
+    {
+      bool result = false;
+      List<bool> validationResults = new List<bool>();
+
+      // Validate the source and destination paths
+      validationResults.Add(this.txtSourcePath.Text.IsValidSourcePath());
+      validationResults.Add(this.txtDestinationPath.Text.IsValidDestinationPath());
+
+      // Validate the dimensions
+      validationResults.Add(this.txtOriginalDimensionsWidth.Text.IsValidDimension());
+      validationResults.Add(this.txtOriginalDimensionsHeight.Text.IsValidDimension());
+      validationResults.Add(this.txtActualDimensionsWidth.Text.IsValidDimension());
+      validationResults.Add(this.txtActualDimensionsHeight.Text.IsValidDimension());
+
+      // Validate the file modification paramaters
+      validationResults.Add(this.txtFilenamePrefix.Text.IsValidFilenamePrefix());
+      validationResults.Add(this.txtFilenameSuffix.Text.IsValidFilenameSuffix());
+
+      // Make sure the source and destination folders are different
+      validationResults.Add(Validation.DoPathsMatch(this.txtSourcePath.Text, this.txtDestinationPath.Text));
+
+      if (!validationResults.Contains(false))
+      {
+        result = true;
+      }
+
+      return result;
+    }
+
+    private void OpenFileDialogBox(string dialogTitle, TextBox textBoxToModify, bool isFolderPicker)
+    {
+      CommonOpenFileDialog fileDialog = new CommonOpenFileDialog();
+      string currentDirectory = @"c:\";
+
+      if (!String.IsNullOrEmpty(this.txtSourcePath.Text))
+      {
+        FileAttributes fileAttributes = File.GetAttributes(this.txtSourcePath.Text);
+        if (fileAttributes.HasFlag(FileAttributes.Directory))
+        {
+          currentDirectory = this.txtSourcePath.Text;
+        }
+      }
+
+      if (!isFolderPicker)
+      {
+        fileDialog.Filters.Add(new CommonFileDialogFilter("MP4 Video File", "*.mp4"));
+      }
+
+      fileDialog.Title = dialogTitle;
+      fileDialog.IsFolderPicker = isFolderPicker;
+      fileDialog.InitialDirectory = currentDirectory;
+      fileDialog.AddToMostRecentlyUsedList = false;
+      fileDialog.AllowNonFileSystemItems = false;
+      fileDialog.DefaultDirectory = currentDirectory;
+      fileDialog.EnsureFileExists = true;
+      fileDialog.EnsurePathExists = true;
+      fileDialog.EnsureReadOnly = false;
+      fileDialog.EnsureValidNames = true;
+      fileDialog.Multiselect = false;
+      fileDialog.ShowPlacesList = true;
+
+      if (fileDialog.ShowDialog() == CommonFileDialogResult.Ok)
+      {
+        textBoxToModify.Text = fileDialog.FileName;
+      }
     }
 
     #region Event Methods
@@ -123,6 +212,32 @@ namespace Mp4HeaderFixGui
     }
 
     #endregion
+
+    #region Path Button Clicks
+
+    private void btnSourceFile_Click(object sender, EventArgs e)
+    {
+      OpenFileDialogBox("Select Source File", this.txtSourcePath, false);
+    }
+
+    private void btnSourceFolder_Click(object sender, EventArgs e)
+    {
+      OpenFileDialogBox("Select Source Folder", this.txtSourcePath, true);
+    }
+
+    private void btnSelectDestination_Click(object sender, EventArgs e)
+    {
+      OpenFileDialogBox("Select Destination Folder", this.txtDestinationPath, true);
+    }
+
+    #endregion
+
+    private void btnOk_Click(object sender, EventArgs e)
+    {
+      Mp4RepairJob mp4headerJob = PrepareRepairJob();
+      mp4headerJob.Run();
+      DisplayResults displayResults = new DisplayResults(mp4headerJob);
+    }
 
     private void txtFilenamePrefixOrSuffix_TextChanged(object sender, EventArgs e)
     {
