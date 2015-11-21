@@ -2,7 +2,7 @@
 
 namespace Mp4UnCropperTests.Samples
 {
-  class SampleBinaryFile : BinaryFile
+  internal class SampleBinaryFile : BinaryFile
   {
     internal SampleBinaryFile(string filename, byte[] fileAsBytes, FileResult fileResult = FileResult.Success)
     {

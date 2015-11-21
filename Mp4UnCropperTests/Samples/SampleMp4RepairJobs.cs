@@ -1,5 +1,5 @@
-﻿using Mp4UnCropper;
-using System.IO;
+﻿using System.IO;
+using Mp4UnCropper;
 
 namespace Mp4UnCropperTests.Samples
 {
@@ -12,7 +12,7 @@ namespace Mp4UnCropperTests.Samples
 
       Dimension oldDimensions = new Dimension(320, 240);
       Dimension newDimensions = new Dimension(640, 480);
-      FileSaveRule fileSaveRule = new FileSaveRule("", "", SampleFilenames.TempDestinationDirectory);
+      FileSaveRule fileSaveRule = new FileSaveRule(string.Empty, string.Empty, SampleFilenames.TempDestinationDirectory);
 
       return new Mp4RepairJob(SampleFilenames.TempDirectory, oldDimensions, newDimensions, fileSaveRule);
     }
@@ -23,7 +23,7 @@ namespace Mp4UnCropperTests.Samples
 
       Dimension oldDimensions = new Dimension(320, 240);
       Dimension newDimensions = new Dimension(640, 480);
-      FileSaveRule fileSaveRule = new FileSaveRule("", "", SampleFilenames.TempDestinationDirectory);
+      FileSaveRule fileSaveRule = new FileSaveRule(string.Empty, string.Empty, SampleFilenames.TempDestinationDirectory);
 
       return new Mp4RepairJob(SampleFilenames.TempDirectory, oldDimensions, newDimensions, fileSaveRule);
     }
@@ -32,7 +32,7 @@ namespace Mp4UnCropperTests.Samples
     {
       Dimension oldDimensions = new Dimension(320, 240);
       Dimension newDimensions = new Dimension(640, 480);
-      FileSaveRule fileSaveRule = new FileSaveRule("", "", SampleFilenames.TempDestinationDirectory);
+      FileSaveRule fileSaveRule = new FileSaveRule(string.Empty, string.Empty, SampleFilenames.TempDestinationDirectory);
       return new Mp4RepairJob(SampleFilenames.FileWithIllegalCharacters, oldDimensions, newDimensions, fileSaveRule);
     }
 
@@ -46,7 +46,7 @@ namespace Mp4UnCropperTests.Samples
 
       Dimension oldDimensions = new Dimension(320, 240);
       Dimension newDimensions = new Dimension(640, 480);
-      FileSaveRule fileSaveRule = new FileSaveRule("", "", SampleFilenames.TempDestinationDirectory);
+      FileSaveRule fileSaveRule = new FileSaveRule(string.Empty, string.Empty, SampleFilenames.TempDestinationDirectory);
 
       return new Mp4RepairJob(SampleFilenames.TempDirectory, oldDimensions, newDimensions, fileSaveRule);
     }
@@ -58,7 +58,7 @@ namespace Mp4UnCropperTests.Samples
 
       Dimension oldDimensions = new Dimension(320, 240);
       Dimension newDimensions = new Dimension(640, 480);
-      FileSaveRule fileSaveRule = new FileSaveRule("", "", SampleFilenames.TempDestinationDirectory);
+      FileSaveRule fileSaveRule = new FileSaveRule(string.Empty, string.Empty, SampleFilenames.TempDestinationDirectory);
 
       return new Mp4RepairJob(SampleFilenames.TempDirectory, oldDimensions, newDimensions, fileSaveRule);
     }
@@ -70,9 +70,14 @@ namespace Mp4UnCropperTests.Samples
 
       Dimension oldDimensions = new Dimension(320, 240);
       Dimension newDimensions = new Dimension(640, 480);
-      FileSaveRule fileSaveRule = new FileSaveRule("", "", SampleFilenames.FileWithIllegalCharacters);
+      FileSaveRule fileSaveRule = new FileSaveRule(string.Empty, string.Empty, SampleFilenames.FileWithIllegalCharacters);
 
       return new Mp4RepairJob(SampleFilenames.TempDirectory, oldDimensions, newDimensions, fileSaveRule);
+    }
+
+    public static void DeleteTempDirectory()
+    {
+      Directory.Delete(SampleFilenames.TempDirectory, true);
     }
 
     private static void CreateTempDirectory()
@@ -81,12 +86,8 @@ namespace Mp4UnCropperTests.Samples
       {
         DeleteTempDirectory();
       }
-      Directory.CreateDirectory(SampleFilenames.TempDirectory);
-    }
 
-    public static void DeleteTempDirectory()
-    {
-      Directory.Delete(SampleFilenames.TempDirectory, true);
+      Directory.CreateDirectory(SampleFilenames.TempDirectory);
     }
 
     private static void CreateSampleFilesWithStandardByteArray()
@@ -105,11 +106,13 @@ namespace Mp4UnCropperTests.Samples
         byte[] b = SampleByteArrays.ArrayToSearch;
         WriteFile f = new WriteFile(new SampleBinaryFile(SampleFilenames.TempDirectory + "SampleFile_00" + i.ToString("D2") + ".mp4", b, FileResult.Success));
       }
+
       for (int i = 1; i <= 15; i++)
       {
         byte[] b = SampleByteArrays.ArrayToSearch;
         WriteFile f = new WriteFile(new SampleBinaryFile(SampleFilenames.TempDirectory + "SampleFile_00" + i.ToString("D2") + ".bin", b, FileResult.Success));
       }
     }
+
   }
 }

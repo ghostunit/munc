@@ -1,12 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Windows;
-using Mp4UnCropper;
 using System.Windows.Controls;
 using System.Windows.Media;
-using System.Collections.Generic;
-using Xceed.Wpf.Toolkit;
-using System.IO;
 using Microsoft.WindowsAPICodePack.Dialogs;
+using Mp4UnCropper;
+using Xceed.Wpf.Toolkit;
 
 namespace Mp4UnCropperGui
 {
@@ -54,7 +54,7 @@ namespace Mp4UnCropperGui
       String sourcePath = String.Empty;
       Dimension orginalDimensions = new Dimension(0, 0);
       Dimension actualDimensions = new Dimension(0, 0);
-      FileSaveRule fileSaveRule = new FileSaveRule("", "", "");
+      FileSaveRule fileSaveRule = new FileSaveRule(string.Empty, string.Empty, string.Empty);
 
       if (ValidateMp4RepairJob())
       {

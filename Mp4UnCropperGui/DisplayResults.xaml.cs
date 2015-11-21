@@ -1,5 +1,5 @@
-﻿using Mp4UnCropper;
-using System.Windows;
+﻿using System.Windows;
+using Mp4UnCropper;
 
 namespace Mp4UnCropperGui
 {

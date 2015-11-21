@@ -22,11 +22,6 @@
             <BooleanProperty Name="Enabled">False</BooleanProperty>
           </RuleSettings>
         </Rule>
-        <Rule Name="UseBuiltInTypeAlias">
-          <RuleSettings>
-            <BooleanProperty Name="Enabled">False</BooleanProperty>
-          </RuleSettings>
-        </Rule>
         <Rule Name="PrefixCallsCorrectly">
           <RuleSettings>
             <BooleanProperty Name="Enabled">False</BooleanProperty>
@@ -70,23 +65,15 @@
       </Rules>
       <AnalyzerSettings />
     </Analyzer>
+    <Analyzer AnalyzerId="StyleCop.CSharp.MaintainabilityRules">
+      <Rules>
+        <Rule Name="FieldsMustBePrivate">
+          <RuleSettings>
+            <BooleanProperty Name="Enabled">False</BooleanProperty>
+          </RuleSettings>
+        </Rule>
+      </Rules>
+      <AnalyzerSettings />
+    </Analyzer>
   </Analyzers>
-  
-  <SourceFileList>
-   <SourceFile>BinaryFile.cs</SourceFile>
-    <Settings>
-      <Analyzers>
-        <Analyzer AnalyzerId="Microsoft.StyleCop.CSharp.MaintainabilityRules">
-          <Rules>
-            <Rule Name="FieldsMustBePrivate">
-              <RuleSettings>
-                <BooleanProperty Name="Enabled">False</BooleanProperty>
-              </RuleSettings>
-            </Rule>
-          </Rules>
-        </Analyzer>
-      </Analyzers>
-    </Settings>
-  </SourceFileList>
-  
 </StyleCopSettings>

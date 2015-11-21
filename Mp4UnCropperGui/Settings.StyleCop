@@ -57,6 +57,11 @@
             <BooleanProperty Name="Enabled">False</BooleanProperty>
           </RuleSettings>
         </Rule>
+        <Rule Name="ElementDocumentationMustBeSpelledCorrectly">
+          <RuleSettings>
+            <BooleanProperty Name="Enabled">False</BooleanProperty>
+          </RuleSettings>
+        </Rule>
       </Rules>
       <AnalyzerSettings />
     </Analyzer>
@@ -70,23 +75,15 @@
       </Rules>
       <AnalyzerSettings />
     </Analyzer>
+    <Analyzer AnalyzerId="StyleCop.CSharp.NamingRules">
+      <Rules>
+        <Rule Name="ElementMustBeginWithUpperCaseLetter">
+          <RuleSettings>
+            <BooleanProperty Name="Enabled">False</BooleanProperty>
+          </RuleSettings>
+        </Rule>
+      </Rules>
+      <AnalyzerSettings />
+    </Analyzer>
   </Analyzers>
-  
-  <SourceFileList>
-   <SourceFile>BinaryFile.cs</SourceFile>
-    <Settings>
-      <Analyzers>
-        <Analyzer AnalyzerId="Microsoft.StyleCop.CSharp.MaintainabilityRules">
-          <Rules>
-            <Rule Name="FieldsMustBePrivate">
-              <RuleSettings>
-                <BooleanProperty Name="Enabled">False</BooleanProperty>
-              </RuleSettings>
-            </Rule>
-          </Rules>
-        </Analyzer>
-      </Analyzers>
-    </Settings>
-  </SourceFileList>
-  
 </StyleCopSettings>

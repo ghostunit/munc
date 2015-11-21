@@ -23,7 +23,7 @@ namespace Mp4UnCropperTests
     [TestMethod]
     public void Result_ShouldBeIllegalFilename_WhenFilenameIsEmpty()
     {
-      Assert.AreEqual(FileResult.IllegalFilename, new LoadFile(String.Empty).Result);
+      Assert.AreEqual(FileResult.IllegalFilename, new LoadFile(string.Empty).Result);
     }
 
     [TestMethod]
@@ -47,7 +47,7 @@ namespace Mp4UnCropperTests
     [TestMethod]
     public void Bytes_ShouldBeZero_WhenFilenameIsEmpty()
     {
-      Assert.IsTrue(new LoadFile(String.Empty).Bytes.Length == 0);
+      Assert.IsTrue(new LoadFile(string.Empty).Bytes.Length == 0);
     }
 
     [TestMethod]
