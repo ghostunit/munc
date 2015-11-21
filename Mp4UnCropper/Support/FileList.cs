@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.IO;
+using System.Linq;
 
 namespace Mp4UnCropper
 {
@@ -10,6 +10,14 @@ namespace Mp4UnCropper
     private string path;
     private List<string> fileLocationList;
     private FileResult fileResult;
+
+    internal FileList(string path)
+    {
+      this.path = path;
+      this.fileLocationList = new List<string>();
+      this.fileResult = FileResult.Undefined;
+      LoadFileList();
+    }
 
     internal int Length
     {
@@ -35,21 +43,13 @@ namespace Mp4UnCropper
       }
     }
 
-    internal FileList(string path)
-    {
-      this.path = path;
-      this.fileLocationList = new List<string>();
-      this.fileResult = FileResult.Undefined;
-      LoadFileList();
-    }
-
     private void LoadFileList()
     {
       try
       {
         Path.GetFullPath(this.path);
       }
-      catch (Exception ex)
+      catch (Exception)
       {
         this.fileLocationList = new List<string> { this.path };
         this.fileResult = FileResult.IllegalFilename;
@@ -66,19 +66,18 @@ namespace Mp4UnCropper
           return;
         }
       }
-      catch (FileNotFoundException ex)
+      catch (FileNotFoundException)
       {
         this.fileLocationList = new List<string> { this.path };
         this.fileResult = FileResult.PathNotFound;
         return;
       }
-      catch (Exception ex)
+      catch (Exception)
       {
         this.fileLocationList = new List<string> { this.path };
         this.fileResult = FileResult.UnknownError;
         return;
       }
-
 
       if (!Directory.Exists(this.path))
       {
@@ -91,7 +90,7 @@ namespace Mp4UnCropper
       {
         this.fileLocationList = Directory.GetFiles(this.path, "*.mp4").ToList<string>();
       }
-      catch (Exception ex)
+      catch (Exception)
       {
         this.fileLocationList = new List<string> { this.path };
         this.fileResult = FileResult.UnknownError;

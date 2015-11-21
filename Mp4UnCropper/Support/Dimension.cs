@@ -10,15 +10,20 @@ namespace Mp4UnCropper
     private UInt16 horizontal;
     private UInt16 vertical;
 
-    internal byte[] AsBytes
-    {
-      get { return ReturnDimensionsAsByteArray(); }
-    }
-
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Dimension"/> class.
+    /// </summary>
+    /// <param name="horizontal">The width in pixels</param>
+    /// <param name="vertical">The height in pixels</param>
     public Dimension(UInt16 horizontal, UInt16 vertical)
     {
       this.horizontal = horizontal;
       this.vertical = vertical;
+    }
+
+    internal byte[] AsBytes
+    {
+      get { return ReturnDimensionsAsByteArray(); }
     }
 
     private byte[] ReturnDimensionsAsByteArray()

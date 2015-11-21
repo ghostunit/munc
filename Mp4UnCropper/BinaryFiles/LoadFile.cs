@@ -5,7 +5,7 @@ namespace Mp4UnCropper
 {
   internal class LoadFile : BinaryFile
   {
-    public LoadFile(string filename)
+    internal LoadFile(string filename)
     {
       this.filename = filename;
       this.fileAsBytes = new byte[0];
@@ -24,7 +24,7 @@ namespace Mp4UnCropper
       {
         System.IO.Path.GetFullPath(this.filename);
       }
-      catch (Exception ex)
+      catch (Exception)
       {
         this.fileResult = FileResult.IllegalFilename;
         return;
@@ -34,7 +34,7 @@ namespace Mp4UnCropper
       {
         this.fileAsBytes = File.ReadAllBytes(this.filename);
       }
-      catch (FileNotFoundException ex)
+      catch (FileNotFoundException)
       {
         this.fileResult = FileResult.PathNotFound;
         return;

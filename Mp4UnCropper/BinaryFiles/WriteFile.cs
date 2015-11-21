@@ -30,7 +30,7 @@ namespace Mp4UnCropper
       {
         System.IO.Path.GetFullPath(this.filename);
       }
-      catch (Exception ex)
+      catch (Exception)
       {
         this.fileResult = FileResult.IllegalFilename;
         return;
@@ -43,12 +43,12 @@ namespace Mp4UnCropper
         fileStream.Write(this.fileAsBytes, 0, this.fileAsBytes.Length);
         fileStream.Close();
       }
-      catch (UnauthorizedAccessException ex)
+      catch (UnauthorizedAccessException)
       {
         this.fileResult = FileResult.PermissionFailure;
         return;
       }
-      catch (Exception ex)
+      catch (Exception)
       {
         this.fileResult = FileResult.UnknownError;
         return;

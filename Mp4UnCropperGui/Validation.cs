@@ -71,7 +71,7 @@ namespace Mp4UnCropperGui
       {
         Path.GetFullPath(stringToTest);
       }
-      catch (Exception ex)
+      catch (Exception)
       {
         result = false;
       }
@@ -131,7 +131,7 @@ namespace Mp4UnCropperGui
           sourcePath = Path.GetDirectoryName(sourcePath);
         }
       }
-      catch (Exception ex)
+      catch (Exception)
       {
         result = false;
       }

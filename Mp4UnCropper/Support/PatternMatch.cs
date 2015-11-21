@@ -9,9 +9,13 @@ namespace Mp4UnCropper
     private byte[] arrayToSearch;
     private int firstPatternIndex;
 
-    /// <summary>
-    /// Returns true if an instance of the pattern was found in the array.
-    /// </summary>
+    internal PatternMatch(byte[] patternToFind, byte[] arrayToSearch)
+    {
+      this.patternToFind = patternToFind;
+      this.arrayToSearch = arrayToSearch;
+      this.firstPatternIndex = 0;
+    }
+
     internal bool Success
     {
       get
@@ -29,9 +33,6 @@ namespace Mp4UnCropper
       }
     }
 
-    /// <summary>
-    /// The zero-based index of the pattern found within the array.
-    /// </summary>
     internal int Index
     {
       get
@@ -39,18 +40,6 @@ namespace Mp4UnCropper
         FindFirstPatternIndex();
         return this.firstPatternIndex;
       }
-    }
-
-    /// <summary>
-    /// Searches within a byte array for the first instance of another byte array.
-    /// </summary>
-    /// <param name="patternToFind">The byte array to find within the larger array</param>
-    /// <param name="arrayToSearch">The byte array to search inside of</param>
-    internal PatternMatch(byte[] patternToFind, byte[] arrayToSearch)
-    {
-      this.patternToFind = patternToFind;
-      this.arrayToSearch = arrayToSearch;
-      this.firstPatternIndex = 0;
     }
 
     private void FindFirstPatternIndex()
@@ -86,6 +75,7 @@ namespace Mp4UnCropper
           return i;
         }
       }
+
       return -1;
     }
 

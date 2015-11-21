@@ -41,7 +41,7 @@
   <ItemGroup>
     <Compile Include="BinaryFiles\BinaryFile.cs" />
     <Compile Include="BinaryFiles\ModifiedFile.cs" />
-    <Compile Include="Support\DestinationPath.cs" />
+    <Compile Include="Support\Destination.cs" />
     <Compile Include="Support\ExtensionMethods.cs" />
     <Compile Include="Support\Dimension.cs" />
     <Compile Include="Support\Enums.cs" />

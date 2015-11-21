@@ -7,15 +7,15 @@ namespace Mp4UnCropper
     private string originalFilename;
     private FileSaveRule fileSaveRule;
 
-    internal string Path
-    {
-      get  {  return CreateDestinationPath();   }
-    }
-
     internal Destination(FileSaveRule fileSaveRule, string pathToModify)
     {
       this.originalFilename = pathToModify;
       this.fileSaveRule = fileSaveRule;
+    }
+
+    internal string Path
+    {
+      get { return CreateDestinationPath(); }
     }
 
     private string CreateDestinationPath()

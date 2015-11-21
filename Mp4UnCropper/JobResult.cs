@@ -9,8 +9,18 @@
     private FileResult modifiedFileResult;
     private FileResult writeFileResult;
 
+    internal JobResult(int jobID, LoadFile loadFile, ModifiedFile modifiedFile, WriteFile writeFile)
+    {
+      this.jobID = jobID;
+      this.originalPath = loadFile.Path;
+      this.newPath = writeFile.Path;
+      this.loadFileResult = loadFile.Result;
+      this.modifiedFileResult = modifiedFile.Result;
+      this.writeFileResult = writeFile.Result;
+    }
+
     /// <summary>
-    /// The zero-based index of this job result
+    /// Gets the zero-based index of this job result
     /// </summary>
     public int JobID
     {
@@ -18,13 +28,13 @@
     }
 
     /// <summary>
-    /// Returns true if the job reported a failure type of "none"
+    /// Gets a value indicating whether the job reported a failure type of "none"
     /// </summary>
     public bool Passed
     {
       get
       {
-        if (FailurePoint == FailureType.None)
+        if (this.FailurePoint == FailureType.None)
         {
           return true;
         }
@@ -72,17 +82,7 @@
     /// </summary>
     public string NewFilename
     {
-      get { return newPath; }
-    }
-
-    internal JobResult(int jobID, LoadFile loadFile, ModifiedFile modifiedFile, WriteFile writeFile)
-    {
-      this.jobID = jobID;
-      this.originalPath = loadFile.Path;
-      this.newPath = writeFile.Path;
-      this.loadFileResult = loadFile.Result;
-      this.modifiedFileResult = modifiedFile.Result;
-      this.writeFileResult = writeFile.Result;
+      get { return this.newPath; }
     }
 
     private string CreateHumanReadableFailureMessage()
@@ -156,6 +156,7 @@
           break;
 
       }
+
       return result;
     }
 
@@ -167,10 +168,12 @@
       {
         result = FailureType.Write;
       }
+
       if (this.modifiedFileResult != FileResult.Success)
       {
         result = FailureType.Modify;
       }
+
       if (this.loadFileResult != FileResult.Success)
       {
         result = FailureType.Load;

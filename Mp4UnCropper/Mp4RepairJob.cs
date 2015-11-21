@@ -14,15 +14,7 @@ namespace Mp4UnCropper
     private List<JobResult> jobResults;
 
     /// <summary>
-    /// Gets a list of results for this job, one for each file that was repaired
-    /// </summary>
-    public List<JobResult> Results
-    {
-      get { return this.jobResults; }
-    }
-
-    /// <summary>
-    /// This is the only way to properly initialize this object.
+    /// Initializes a new instance of the <see cref="Mp4RepairJob"/> class.
     /// </summary>
     /// <param name="pathToOriginalFiles">A string referencing the file or folder to be processed</param>
     /// <param name="oldDimensions">The dimensions that are incorrectly stored on the source MP4 file(s)</param>
@@ -35,6 +27,14 @@ namespace Mp4UnCropper
       this.newDimensions = newDimensions;
       this.fileSaveRule = fileSaveRule;
       this.jobResults = new List<JobResult>();
+    }
+
+    /// <summary>
+    /// Gets a list of results for this job, one for each file that was repaired
+    /// </summary>
+    public List<JobResult> Results
+    {
+      get { return this.jobResults; }
     }
 
     /// <summary>
@@ -56,7 +56,6 @@ namespace Mp4UnCropper
         this.jobResults.Add(jobResult);
         jobID++;
       }
-
     }
 
   }

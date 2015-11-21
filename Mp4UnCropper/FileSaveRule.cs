@@ -5,16 +5,16 @@
   /// </summary>
   public class FileSaveRule
   {
+    public FileSaveRule(string filenamePrefix, string filenameSuffix, string savePath)
+    {
+      this.FilenamePrefix = filenamePrefix;
+      this.FilenameSuffix = filenameSuffix;
+      this.SavePath = savePath;
+    }
+
     internal string FilenamePrefix { get; private set; }
     internal string FilenameSuffix { get; private set; }
     internal string SavePath { get; private set; }
-
-    public FileSaveRule(string filenamePrefix, string filenameSuffix, string savePath)
-    {
-      FilenamePrefix = filenamePrefix;
-      FilenameSuffix = filenameSuffix;
-      SavePath = savePath;
-    }
 
   }
 }

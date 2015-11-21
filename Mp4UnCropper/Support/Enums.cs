@@ -1,7 +1,7 @@
 ﻿namespace Mp4UnCropper
 {
   /// <summary>
-  /// The result of action(s) performed on an obect of type BinaryFile
+  /// The result of action(s) performed on an object of type BinaryFile
   /// </summary>
   public enum FileResult
   {

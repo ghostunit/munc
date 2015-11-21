@@ -41,5 +41,6 @@
         this.fileAsBytes[patternMatch.Index + 3] = this.newData[3];
       }
     }
+
   }
 }
