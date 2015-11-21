@@ -1,0 +1,47 @@
+﻿<Window x:Class="Mp4UnCropperGui.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        Title="MP4 Header Repair" Height="423" Width="306"
+        WindowStyle="SingleBorderWindow" ResizeMode="NoResize" Background="Black">
+
+  <Grid>
+
+    <!--Source and Destination Paths-->
+    <xctk:WatermarkTextBox Name="txtSourcePath" Watermark="C:\Select\Source\" Style="{StaticResource FolderPath}" Margin="12,12,0,0" Width="153"/>
+    <!--<Button Name="btnSelectSource" Content="Source" Style="{StaticResource FolderPathButton}" Margin="205,12,0,0"/>-->
+    <Button Name="btnSourceFile" Content="File" Style="{StaticResource FolderPathButton}" Margin="173,12,0,0" Width="50"/>
+    <Button Name="btnSourceFolder" Content="Folder" Style="{StaticResource FolderPathButton}" Margin="230,12,0,0" Width="50"/>
+    <xctk:WatermarkTextBox Name="txtDestinationPath" Watermark="C:\Select\Destination\" Style="{StaticResource FolderPath}" Margin="12,47,0,0" />
+    <Button Name="btnSelectDestination" Content="Destination" Style="{StaticResource FolderPathButton}" Margin="205,48,0,0"/>
+
+    <!--Original and Actual Paths-->
+    <GroupBox Header="Dimensions (in Pixels)" Style="{StaticResource BasicGroupBox}"  Margin="10,80,0,0"  Height="105" >
+      <Grid>
+        <Label Content="Original Dimensions"  Style="{StaticResource BasicLabel}" Margin="6,10,0,0"/>
+        <xctk:WatermarkTextBox Name="txtOriginalDimensionsWidth" Watermark="Width" Style="{StaticResource Dimensions}" Margin="125,12,0,0"/>
+        <Label Content="x" Style="{StaticResource BasicLabel}" Margin="180,10,0,0"/>
+        <xctk:WatermarkTextBox Name="txtOriginalDimensionsHeight" Watermark="Height" Style="{StaticResource Dimensions}" Margin="200,12,0,0"/>
+        <Label Content="Actual Dimensions" Style="{StaticResource BasicLabel}" Margin="6,45,0,0"/>
+        <xctk:WatermarkTextBox Name="txtActualDimensionsWidth" Watermark="Width" Style="{StaticResource Dimensions}" Margin="125,46,0,0"/>
+        <Label Content="x" Style="{StaticResource BasicLabel}" Margin="180,45,0,0"/>
+        <xctk:WatermarkTextBox Name="txtActualDimensionsHeight" Watermark="Height" Style="{StaticResource Dimensions}" Margin="200,46,0,0"/>
+      </Grid>
+    </GroupBox>
+
+    <!--Filename Modification-->
+    <GroupBox Header="Modify Filenames (optional)" Style="{StaticResource BasicGroupBox}" Margin="10,192,0,0"  Height="124">
+      <Grid>
+        <Label Content="Filename Prefix" Style="{StaticResource BasicLabel}" Margin="6,8,0,0"/>
+        <xctk:WatermarkTextBox Name="txtFilenamePrefix" Style="{StaticResource FilenameModifiers}" Margin="101,10,0,0"/>
+        <Label Content="Filename Suffix" Style="{StaticResource BasicLabel}" Margin="6,42,0,0" />
+        <xctk:WatermarkTextBox Name="txtFilenameSuffix" Style="{StaticResource FilenameModifiers}" Margin="101,43,0,0"/>
+        <TextBlock Name="lblExampleFilename" Text="ExampleFilename" Style="{StaticResource ExampleFilename}" Margin="6,75,0,0"/>
+      </Grid>
+    </GroupBox>
+
+    <!--Start Button-->
+    <Button Name="btnOk" Content="Start Conversion" Style="{StaticResource GreenButton}" Margin="10,329,0,0"/>
+
+  </Grid>
+</Window>
