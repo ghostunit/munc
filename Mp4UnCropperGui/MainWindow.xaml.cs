@@ -235,7 +235,6 @@ namespace Mp4UnCropperGui
     private void btnOk_Click(object sender, EventArgs e)
     {
       Mp4RepairJob mp4headerJob = PrepareRepairJob();
-      mp4headerJob.Run();
       DisplayResults displayResults = new DisplayResults(mp4headerJob);
     }
 

@@ -5,6 +5,12 @@
   /// </summary>
   public class FileSaveRule
   {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="FileSaveRule"/> class.
+    /// </summary>
+    /// <param name="filenamePrefix">The characters to precede the filename when saved</param>
+    /// <param name="filenameSuffix">The trailing characters to be appended to the filename when saved</param>
+    /// <param name="savePath">The directory to save all repaired files in</param>
     public FileSaveRule(string filenamePrefix, string filenameSuffix, string savePath)
     {
       this.FilenamePrefix = filenamePrefix;

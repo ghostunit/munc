@@ -44,16 +44,25 @@
   <ItemGroup>
     <Compile Include="BinaryFiles\BinaryFile.cs" />
     <Compile Include="BinaryFiles\ModifiedFile.cs" />
-    <Compile Include="Support\Destination.cs" />
-    <Compile Include="Support\ExtensionMethods.cs" />
-    <Compile Include="Support\Dimension.cs" />
-    <Compile Include="Support\Enums.cs" />
-    <Compile Include="Support\FileList.cs" />
+    <Compile Include="Events\FileListUpdatedEventArgs.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="Events\EventHandlers.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="Events\FileProcessedEventArgs.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="Core\Destination.cs" />
+    <Compile Include="Core\ExtensionMethods.cs" />
+    <Compile Include="Core\Dimension.cs" />
+    <Compile Include="Core\Enums.cs" />
+    <Compile Include="Core\FileList.cs" />
     <Compile Include="FileSaveRule.cs" />
     <Compile Include="BinaryFiles\LoadFile.cs" />
     <Compile Include="Mp4RepairJob.cs" />
     <Compile Include="JobResult.cs" />
-    <Compile Include="Support\PatternMatch.cs" />
+    <Compile Include="Core\PatternMatch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BinaryFiles\WriteFile.cs" />
   </ItemGroup>

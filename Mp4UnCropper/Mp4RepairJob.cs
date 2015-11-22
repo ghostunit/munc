@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Mp4UnCropper
 {
@@ -30,6 +31,21 @@ namespace Mp4UnCropper
     }
 
     /// <summary>
+    /// Fires when the MP4RepairJob determines how many files are to be processed
+    /// </summary>
+    public event FileListUpdatedEventHandler FileListUpdated;
+
+    /// <summary>
+    /// Fires when an MP4 file has been processed
+    /// </summary>
+    public event FileProcessedEventHandler FileProcessed;
+
+    /// <summary>
+    /// Fires after the last MP4RepairJob has been run
+    /// </summary>
+    public event JobCompleteEventHandler JobComplete;
+
+    /// <summary>
     /// Gets a list of results for this job, one for each file that was repaired
     /// </summary>
     public List<JobResult> Results
@@ -38,23 +54,66 @@ namespace Mp4UnCropper
     }
 
     /// <summary>
-    /// Runs the MP4 repair job. Loads, modifies and writes each of the source file(s) ad records the results of that repair
+    /// Runs the MP4 repair job. Loads, modifies and writes each of the source file(s) and records the results of that repair
     /// </summary>
     public void Run()
     {
       int jobID = 0;
       List<string> filenames = new FileList(pathToOriginalFiles).Files;
       filenames.Sort();
+      SendFileListUpdatedEvent(filenames.Count);
 
       foreach (string filename in filenames)
       {
-        LoadFile loadFile = new LoadFile(filename);
-        Destination destination = new Destination(fileSaveRule, loadFile.Path);
-        ModifiedFile modifiedFile = new ModifiedFile(loadFile.Bytes, oldDimensions.AsBytes, newDimensions.AsBytes, destination.Path);
-        WriteFile writeFile = new WriteFile(modifiedFile);
-        JobResult jobResult = new JobResult(jobID, loadFile, modifiedFile, writeFile);
+        var loadFile = new LoadFile(filename);
+        var destination = new Destination(fileSaveRule, loadFile.Path);
+        var modifiedFile = new ModifiedFile(loadFile.Bytes, oldDimensions.AsBytes, newDimensions.AsBytes, destination.Path);
+        var writeFile = new WriteFile(modifiedFile);
+        var jobResult = new JobResult(jobID, loadFile, modifiedFile, writeFile);
         jobResults.Add(jobResult);
+        SendFileProcessedEvent(jobResults.Count);
         jobID++;
+      }
+
+      SendJobCompleteEvent();
+    }
+
+    /// <summary>
+    /// Fires a FileListUpdated event
+    /// </summary>
+    /// <param name="filesToProcess">The number of files in the FileList that are to be processed.</param>
+    private void SendFileListUpdatedEvent(int filesToProcess)
+    {
+      var eventArgs = new FileListUpdatedEventArgs(filesToProcess);
+
+      if (FileListUpdated != null)
+      {
+        FileListUpdated(this, eventArgs);
+      }
+    }
+
+    /// <summary>
+    /// Fires a FileProcessed event
+    /// </summary>
+    /// <param name="filesProcessed">The number of files that have been processed</param>
+    private void SendFileProcessedEvent(int filesProcessed)
+    {
+      var eventArgs = new FileProcessedEventArgs(filesProcessed);
+
+      if (FileProcessed != null)
+      {
+        FileProcessed(this, eventArgs);
+      }
+    }
+
+    /// <summary>
+    /// Fires a JobComplete event
+    /// </summary>
+    private void SendJobCompleteEvent()
+    {
+      if (JobComplete != null)
+      {
+        JobComplete(this, new EventArgs());
       }
     }
 

@@ -1,4 +1,5 @@
 ﻿using NLog;
+
 namespace Mp4UnCropper
 {
   internal class BinaryFile

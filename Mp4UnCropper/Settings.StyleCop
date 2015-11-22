@@ -41,13 +41,12 @@
       <AnalyzerSettings />
     </Analyzer>
     <Analyzer AnalyzerId="StyleCop.CSharp.DocumentationRules">
-      <Rules>
-        <Rule Name="ElementsMustBeDocumented">
-          <RuleSettings>
-            <BooleanProperty Name="Enabled">False</BooleanProperty>
-          </RuleSettings>
-        </Rule>
-        <Rule Name="EnumerationItemsMustBeDocumented">
+		<AnalyzerSettings>
+			<BooleanProperty Name="IgnorePrivates">True</BooleanProperty>
+			<BooleanProperty Name="IgnoreInternals">True</BooleanProperty>
+		</AnalyzerSettings>     
+		<Rules>
+		<Rule Name="EnumerationItemsMustBeDocumented">
           <RuleSettings>
             <BooleanProperty Name="Enabled">False</BooleanProperty>
           </RuleSettings>
@@ -86,6 +85,22 @@
           </Rules>
         </Analyzer>
       </Analyzers>
+    </Settings>
+  </SourceFileList>
+  
+  <SourceFileList>
+   <SourceFile>EventHandlers.cs</SourceFile>
+    <Settings>
+      <Analyzer AnalyzerId="StyleCop.CSharp.DocumentationRules">
+		<Rules>
+            <Rule Name="ElementsMustBeDocumented">
+              <RuleSettings>
+                <BooleanProperty Name="Enabled">False</BooleanProperty>
+              </RuleSettings>
+            </Rule>
+		</Rules>
+      <AnalyzerSettings />
+    </Analyzer>
     </Settings>
   </SourceFileList>
   

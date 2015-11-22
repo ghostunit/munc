@@ -1,5 +1,8 @@
 ﻿namespace Mp4UnCropper
 {
+  /// <summary>
+  /// The results of a completed <see cref="Mp4RepairJob"/> class.
+  /// </summary>
   public class JobResult
   {
     private int jobID;

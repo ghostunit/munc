@@ -10,7 +10,8 @@
         WindowStyle="SingleBorderWindow" ResizeMode="NoResize" Background="Black">
 
   <Grid>
-
+    <ProgressBar Minimum="0" Maximum="100" Value="75" />
+    
     <TextBlock Name="tbAllJobs" Style="{StaticResource ExampleFilename}" Margin="6,25,0,0"/>
     <TextBlock Name="tbSuccessfulJobs" Style="{StaticResource ExampleFilename}" Margin="6,50,0,0"/>
     <TextBlock Name="tbLoadFailures" Style="{StaticResource ExampleFilename}" Margin="6,75,0,0"/>
