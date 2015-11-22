@@ -1,6 +1,8 @@
-﻿namespace Mp4UnCropper
+﻿using System;
+
+namespace Mp4UnCropper
 {
-  public class FileListUpdatedEventArgs
+  public class FileListUpdatedEventArgs : EventArgs
   {
     public FileListUpdatedEventArgs(int filesToProcess)
     {

@@ -3,9 +3,7 @@ using System.Collections.Generic;
 
 namespace Mp4UnCropper
 {
-  /// <summary>
-  /// Represents one complete MP4 header repair job, including the files to be converted and the changes to make
-  /// </summary>
+  /// <summary>Represents one complete MP4 header repair job, including the files to be converted and the changes to make.</summary>
   public class Mp4RepairJob
   {
     private string pathToOriginalFiles;
@@ -14,9 +12,7 @@ namespace Mp4UnCropper
     private FileSaveRule fileSaveRule;
     private List<JobResult> jobResults;
 
-    /// <summary>
-    /// Initializes a new instance of the <see cref="Mp4RepairJob"/> class.
-    /// </summary>
+    /// <summary>Initializes a new instance of the <see cref="Mp4RepairJob"/> class.</summary>
     /// <param name="pathToOriginalFiles">A string referencing the file or folder to be processed</param>
     /// <param name="oldDimensions">The dimensions that are incorrectly stored on the source MP4 file(s)</param>
     /// <param name="newDimensions">The correct dimensions of the MP4 file(s)</param>
@@ -30,32 +26,22 @@ namespace Mp4UnCropper
       this.jobResults = new List<JobResult>();
     }
 
-    /// <summary>
-    /// Fires when the MP4RepairJob determines how many files are to be processed
-    /// </summary>
+    /// <summary>Occurs when the MP4RepairJob determines how many files are to be processed.</summary>
     public event FileListUpdatedEventHandler FileListUpdated;
 
-    /// <summary>
-    /// Fires when an MP4 file has been processed
-    /// </summary>
+    /// <summary>Occurs when an MP4 file has been processed.</summary>
     public event FileProcessedEventHandler FileProcessed;
 
-    /// <summary>
-    /// Fires after the last MP4RepairJob has been run
-    /// </summary>
+    /// <summary>Occurs after the last MP4RepairJob has been run.</summary>
     public event JobCompleteEventHandler JobComplete;
 
-    /// <summary>
-    /// Gets a list of results for this job, one for each file that was repaired
-    /// </summary>
+    /// <summary>Gets a list of results for this job, one for each file that was repaired.</summary>
     public List<JobResult> Results
     {
       get { return jobResults; }
     }
 
-    /// <summary>
-    /// Runs the MP4 repair job. Loads, modifies and writes each of the source file(s) and records the results of that repair
-    /// </summary>
+    /// <summary>Runs the MP4 repair job. Loads, modifies and writes each of the source file(s) and records the results of that repair.</summary>
     public void Run()
     {
       int jobID = 0;
@@ -78,10 +64,6 @@ namespace Mp4UnCropper
       SendJobCompleteEvent();
     }
 
-    /// <summary>
-    /// Fires a FileListUpdated event
-    /// </summary>
-    /// <param name="filesToProcess">The number of files in the FileList that are to be processed.</param>
     private void SendFileListUpdatedEvent(int filesToProcess)
     {
       var eventArgs = new FileListUpdatedEventArgs(filesToProcess);
@@ -92,10 +74,6 @@ namespace Mp4UnCropper
       }
     }
 
-    /// <summary>
-    /// Fires a FileProcessed event
-    /// </summary>
-    /// <param name="filesProcessed">The number of files that have been processed</param>
     private void SendFileProcessedEvent(int filesProcessed)
     {
       var eventArgs = new FileProcessedEventArgs(filesProcessed);
@@ -106,9 +84,6 @@ namespace Mp4UnCropper
       }
     }
 
-    /// <summary>
-    /// Fires a JobComplete event
-    /// </summary>
     private void SendJobCompleteEvent()
     {
       if (JobComplete != null)

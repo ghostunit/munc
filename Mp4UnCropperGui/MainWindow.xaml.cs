@@ -51,7 +51,7 @@ namespace Mp4UnCropperGui
 
     private Mp4RepairJob PrepareRepairJob()
     {
-      String sourcePath = String.Empty;
+      string sourcePath = String.Empty;
       Dimension orginalDimensions = new Dimension(0, 0);
       Dimension actualDimensions = new Dimension(0, 0);
       FileSaveRule fileSaveRule = new FileSaveRule(string.Empty, string.Empty, string.Empty);
@@ -234,8 +234,7 @@ namespace Mp4UnCropperGui
 
     private void btnOk_Click(object sender, EventArgs e)
     {
-      Mp4RepairJob mp4headerJob = PrepareRepairJob();
-      DisplayResults displayResults = new DisplayResults(mp4headerJob);
+      DisplayResults displayResults = new DisplayResults(PrepareRepairJob());
     }
 
     private void txtFilenamePrefixOrSuffix_TextChanged(object sender, EventArgs e)

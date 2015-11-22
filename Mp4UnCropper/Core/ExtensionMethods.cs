@@ -2,14 +2,10 @@
 
 namespace Mp4UnCropper
 {
-  /// <summary>
-  /// Helper methods for working with the MP4 Header Fix class library
-  /// </summary>
+  /// <summary>Provides helper methods for working with the MP4 Header Fix class library.</summary>
   public static class ExtensionMethods
   {
-    /// <summary>
-    /// Converts a string to an unsigned 2-byte integer. Expects a pre-validated input and returns zero on failure.
-    /// </summary>
+    /// <summary>Converts a string to an unsigned 2-byte integer. Expects a pre-validated input and returns zero on failure.</summary>
     /// <param name="stringToConvert">The pre-validated string to be converted</param>
     /// <returns>Returns an unsigned, 2 byte integer</returns>
     public static UInt16 ToUInt16(this string stringToConvert)

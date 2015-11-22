@@ -2,17 +2,13 @@
 
 namespace Mp4UnCropper
 {
-  /// <summary>
-  /// Represents the width and height in pixels of a video file.
-  /// </summary>
+  /// <summary>Represents the width and height in pixels of a video file.</summary>
   public class Dimension
   {
     private UInt16 horizontal;
     private UInt16 vertical;
 
-    /// <summary>
-    /// Initializes a new instance of the <see cref="Dimension"/> class.
-    /// </summary>
+    /// <summary>Initializes a new instance of the <see cref="Dimension"/> class.</summary>
     /// <param name="horizontal">The width in pixels</param>
     /// <param name="vertical">The height in pixels</param>
     public Dimension(UInt16 horizontal, UInt16 vertical)

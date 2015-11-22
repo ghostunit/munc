@@ -1,13 +1,9 @@
 ﻿namespace Mp4UnCropper
 {
-  /// <summary>
-  /// Provides information on where the fixed files should be stored, and how to modify their names.
-  /// </summary>
+  /// <summary>Provides information on where the fixed files should be stored, and how to modify their names.</summary>
   public class FileSaveRule
   {
-    /// <summary>
-    /// Initializes a new instance of the <see cref="FileSaveRule"/> class.
-    /// </summary>
+    /// <summary>Initializes a new instance of the <see cref="FileSaveRule"/> class.</summary>
     /// <param name="filenamePrefix">The characters to precede the filename when saved</param>
     /// <param name="filenameSuffix">The trailing characters to be appended to the filename when saved</param>
     /// <param name="savePath">The directory to save all repaired files in</param>

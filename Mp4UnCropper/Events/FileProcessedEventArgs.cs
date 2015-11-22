@@ -1,6 +1,8 @@
-﻿namespace Mp4UnCropper
+﻿using System;
+
+namespace Mp4UnCropper
 {
-  public class FileProcessedEventArgs
+  public class FileProcessedEventArgs : EventArgs
   {
     public FileProcessedEventArgs(int processedFiles)
     {

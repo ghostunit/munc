@@ -1,8 +1,6 @@
 ﻿namespace Mp4UnCropper
 {
-  /// <summary>
-  /// The results of a completed <see cref="Mp4RepairJob"/> class.
-  /// </summary>
+  /// <summary>The results of a completed <see cref="Mp4RepairJob"/> class.</summary>
   public class JobResult
   {
     private int jobID;
@@ -22,17 +20,13 @@
       this.writeFileResult = writeFile.Result;
     }
 
-    /// <summary>
-    /// Gets the zero-based index of this job result
-    /// </summary>
+    /// <summary>Gets the zero-based index of this job result.</summary>
     public int JobID
     {
       get { return jobID; }
     }
 
-    /// <summary>
-    /// Gets a value indicating whether the job reported a failure type of "none"
-    /// </summary>
+    /// <summary>Gets a value indicating whether the job reported a failure type of "none".</summary>
     public bool Passed
     {
       get
@@ -48,41 +42,31 @@
       }
     }
 
-    /// <summary>
-    /// Gets the point in which this file's repair failed
-    /// </summary>
+    /// <summary>Gets the point in which this file's repair failed.</summary>
     public FailureType FailurePoint
     {
       get { return DecideFailureType(); }
     }
 
-    /// <summary>
-    /// Gets the result code from the earliest failure point of this file's repair
-    /// </summary>
+    /// <summary>Gets the result code from the earliest failure point of this file's repair.</summary>
     public FileResult FailureResult
     {
       get { return GetFileResultCode(); }
     }
 
-    /// <summary>
-    /// Gets a Human readable description of this file's repair status
-    /// </summary>
+    /// <summary>Gets a human-readable description of this file's repair status.</summary>
     public string Status
     {
       get { return CreateHumanReadableFailureMessage(); }
     }
 
-    /// <summary>
-    /// Gets the path and filename of the original file
-    /// </summary>
+    /// <summary>Gets the path and filename of the original file.</summary>
     public string OriginalFilename
     {
       get { return originalPath; }
     }
 
-    /// <summary>
-    /// Gets the path and filename of the modified and saved file
-    /// </summary>
+    /// <summary>Gets the path and filename of the modified and saved file.</summary>
     public string NewFilename
     {
       get { return newPath; }
