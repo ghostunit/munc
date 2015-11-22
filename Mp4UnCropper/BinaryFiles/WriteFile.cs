@@ -7,56 +7,56 @@ namespace Mp4UnCropper
   {
     internal WriteFile(BinaryFile binaryFile)
     {
-      this.filename = binaryFile.Path;
-      this.fileAsBytes = binaryFile.Bytes;
-      this.fileResult = FileResult.Undefined;
+      Path = binaryFile.Path;
+      Bytes = binaryFile.Bytes;
+      Result = FileResult.Undefined;
       Save();
     }
 
     private void Save()
     {
-      if (this.fileResult != FileResult.Undefined)
+      if (Result != FileResult.Undefined)
       {
         return;
       }
 
-      if (this.fileAsBytes == null || this.fileAsBytes.Length <= 0)
+      if (Bytes == null || Bytes.Length <= 0)
       {
-        this.fileResult = FileResult.NoDataToSave;
+        Result = FileResult.NoDataToSave;
         return;
       }
 
       try
       {
-        System.IO.Path.GetFullPath(this.filename);
+        System.IO.Path.GetFullPath(Path);
       }
       catch (Exception)
       {
-        this.fileResult = FileResult.IllegalFilename;
+        Result = FileResult.IllegalFilename;
         return;
       }
 
       try
       {
-        Directory.CreateDirectory(System.IO.Path.GetDirectoryName(this.filename));
-        FileStream fileStream = new FileStream(this.filename, FileMode.Create, FileAccess.Write);
-        fileStream.Write(this.fileAsBytes, 0, this.fileAsBytes.Length);
+        Directory.CreateDirectory(System.IO.Path.GetDirectoryName(Path));
+        FileStream fileStream = new FileStream(Path, FileMode.Create, FileAccess.Write);
+        fileStream.Write(Bytes, 0, Bytes.Length);
         fileStream.Close();
       }
       catch (UnauthorizedAccessException)
       {
-        this.fileResult = FileResult.PermissionFailure;
+        Result = FileResult.PermissionFailure;
         return;
       }
       catch (Exception)
       {
-        this.fileResult = FileResult.UnknownError;
+        Result = FileResult.UnknownError;
         return;
       }
 
-      if (File.Exists(filename))
+      if (File.Exists(Path))
       {
-        this.fileResult = FileResult.Success;
+        Result = FileResult.Success;
       }
     }
 

@@ -22,13 +22,13 @@ namespace Mp4UnCropper
     {
       string result = String.Empty;
 
-      string originalFilename = System.IO.Path.GetFileNameWithoutExtension(this.originalFilename);
-      string extension = System.IO.Path.GetExtension(this.originalFilename);
+      string filenameWithoutExtension = System.IO.Path.GetFileNameWithoutExtension(originalFilename);
+      string extension = System.IO.Path.GetExtension(filenameWithoutExtension);
 
-      result = this.fileSaveRule.SavePath;
-      result += this.fileSaveRule.FilenamePrefix;
-      result += originalFilename;
-      result += this.fileSaveRule.FilenameSuffix;
+      result = fileSaveRule.SavePath;
+      result += fileSaveRule.FilenamePrefix;
+      result += filenameWithoutExtension;
+      result += fileSaveRule.FilenameSuffix;
       result += extension;
 
       return result;

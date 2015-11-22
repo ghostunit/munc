@@ -30,8 +30,8 @@ namespace Mp4UnCropper
     {
       byte[] result = new byte[4];
 
-      byte[] h = this.horizontal.GetBytes();
-      byte[] v = this.vertical.GetBytes();
+      byte[] h = horizontal.GetBytes();
+      byte[] v = vertical.GetBytes();
 
       result[0] = h[0];
       result[1] = h[1];

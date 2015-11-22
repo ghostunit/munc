@@ -1,33 +1,22 @@
-﻿namespace Mp4UnCropper
+﻿using NLog;
+namespace Mp4UnCropper
 {
   internal class BinaryFile
   {
-    protected string filename;
-    protected byte[] fileAsBytes;
-    protected FileResult fileResult;
-
-    internal string Path
+    protected BinaryFile()
     {
-      get
-      {
-        return this.filename;
-      }
+      Logger = LogManager.GetLogger(GetType().FullName);
     }
 
-    internal byte[] Bytes
-    {
-      get
-      {
-        return this.fileAsBytes;
-      }
-    }
+    protected internal string Path { get; protected set; }
 
-    internal FileResult Result
-    {
-      get
-      {
-        return this.fileResult;
-      }
-    }
+    protected internal byte[] Bytes { get; protected set; }
+    
+    protected internal FileResult Result { get; protected set; }
+
+    protected Logger Logger { get; private set; }
+
+    protected string LogPrefix { get; set; }
+
   }
 }

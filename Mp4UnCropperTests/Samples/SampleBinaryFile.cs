@@ -6,9 +6,9 @@ namespace Mp4UnCropperTests.Samples
   {
     internal SampleBinaryFile(string filename, byte[] fileAsBytes, FileResult fileResult = FileResult.Success)
     {
-      this.filename = filename;
-      this.fileAsBytes = fileAsBytes;
-      this.fileResult = fileResult;
+      Path = filename;
+      Bytes = fileAsBytes;
+      Result = fileResult;
     }
   }
 }

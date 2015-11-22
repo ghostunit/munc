@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace Mp4UnCropper
 {
   /// <summary>

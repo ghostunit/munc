@@ -24,7 +24,7 @@
     /// </summary>
     public int JobID
     {
-      get { return this.jobID; }
+      get { return jobID; }
     }
 
     /// <summary>
@@ -34,7 +34,7 @@
     {
       get
       {
-        if (this.FailurePoint == FailureType.None)
+        if (FailurePoint == FailureType.None)
         {
           return true;
         }
@@ -74,7 +74,7 @@
     /// </summary>
     public string OriginalFilename
     {
-      get { return this.originalPath; }
+      get { return originalPath; }
     }
 
     /// <summary>
@@ -82,7 +82,7 @@
     /// </summary>
     public string NewFilename
     {
-      get { return this.newPath; }
+      get { return newPath; }
     }
 
     private string CreateHumanReadableFailureMessage()
@@ -164,17 +164,17 @@
     {
       FailureType result = FailureType.None;
 
-      if (this.writeFileResult != FileResult.Success)
+      if (writeFileResult != FileResult.Success)
       {
         result = FailureType.Write;
       }
 
-      if (this.modifiedFileResult != FileResult.Success)
+      if (modifiedFileResult != FileResult.Success)
       {
         result = FailureType.Modify;
       }
 
-      if (this.loadFileResult != FileResult.Success)
+      if (loadFileResult != FileResult.Success)
       {
         result = FailureType.Load;
       }
@@ -190,13 +190,15 @@
       switch (failureType)
       {
         case FailureType.Load:
-          result = this.loadFileResult;
+          result = loadFileResult;
           break;
+
         case FailureType.Modify:
-          result = this.modifiedFileResult;
+          result = modifiedFileResult;
           break;
+
         case FailureType.Write:
-          result = this.writeFileResult;
+          result = writeFileResult;
           break;
       }
 

@@ -11,34 +11,34 @@
       this.originalFile = originalFile;
       this.oldData = oldData;
       this.newData = newData;
-      this.filename = destinationFilename;
-      this.fileResult = FileResult.Undefined;
+      Path = destinationFilename;
+      Result = FileResult.Undefined;
       ReplaceBytes();
     }
 
     private void ReplaceBytes()
     {
-      this.fileAsBytes = this.originalFile;
+      Bytes = originalFile;
 
-      if (this.fileAsBytes == null || this.fileAsBytes.Length == 0)
+      if (Bytes == null || Bytes.Length == 0)
       {
-        this.fileAsBytes = new byte[0];
-        this.fileResult = FileResult.NoFileToModify;
+        Bytes = new byte[0];
+        Result = FileResult.NoFileToModify;
       }
 
-      PatternMatch patternMatch = new PatternMatch(this.oldData, this.fileAsBytes);
+      PatternMatch patternMatch = new PatternMatch(oldData, Bytes);
       if (!patternMatch.Success)
       {
-        this.fileAsBytes = new byte[0];
-        this.fileResult = FileResult.PatternNotFound;
+        Bytes = new byte[0];
+        Result = FileResult.PatternNotFound;
       }
       else
       {
-        this.fileResult = FileResult.Success;
-        this.fileAsBytes[patternMatch.Index] = this.newData[0];
-        this.fileAsBytes[patternMatch.Index + 1] = this.newData[1];
-        this.fileAsBytes[patternMatch.Index + 2] = this.newData[2];
-        this.fileAsBytes[patternMatch.Index + 3] = this.newData[3];
+        Result = FileResult.Success;
+        Bytes[patternMatch.Index] = newData[0];
+        Bytes[patternMatch.Index + 1] = newData[1];
+        Bytes[patternMatch.Index + 2] = newData[2];
+        Bytes[patternMatch.Index + 3] = newData[3];
       }
     }
 

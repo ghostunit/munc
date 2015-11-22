@@ -34,7 +34,7 @@ namespace Mp4UnCropper
     /// </summary>
     public List<JobResult> Results
     {
-      get { return this.jobResults; }
+      get { return jobResults; }
     }
 
     /// <summary>
@@ -43,17 +43,17 @@ namespace Mp4UnCropper
     public void Run()
     {
       int jobID = 0;
-      List<string> filenames = new FileList(this.pathToOriginalFiles).Files;
+      List<string> filenames = new FileList(pathToOriginalFiles).Files;
       filenames.Sort();
 
       foreach (string filename in filenames)
       {
         LoadFile loadFile = new LoadFile(filename);
-        Destination destination = new Destination(this.fileSaveRule, loadFile.Path);
-        ModifiedFile modifiedFile = new ModifiedFile(loadFile.Bytes, this.oldDimensions.AsBytes, this.newDimensions.AsBytes, destination.Path);
+        Destination destination = new Destination(fileSaveRule, loadFile.Path);
+        ModifiedFile modifiedFile = new ModifiedFile(loadFile.Bytes, oldDimensions.AsBytes, newDimensions.AsBytes, destination.Path);
         WriteFile writeFile = new WriteFile(modifiedFile);
         JobResult jobResult = new JobResult(jobID, loadFile, modifiedFile, writeFile);
-        this.jobResults.Add(jobResult);
+        jobResults.Add(jobResult);
         jobID++;
       }
     }

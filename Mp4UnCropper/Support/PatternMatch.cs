@@ -22,7 +22,7 @@ namespace Mp4UnCropper
       {
         FindFirstPatternIndex();
 
-        if (this.firstPatternIndex > 0)
+        if (firstPatternIndex > 0)
         {
           return true;
         }
@@ -38,31 +38,31 @@ namespace Mp4UnCropper
       get
       {
         FindFirstPatternIndex();
-        return this.firstPatternIndex;
+        return firstPatternIndex;
       }
     }
 
     private void FindFirstPatternIndex()
     {
-      if (this.firstPatternIndex != 0)
+      if (firstPatternIndex != 0)
       {
         return;
       }
 
-      int i = IndexOfByte(this.arrayToSearch, this.patternToFind[0]);
+      int i = IndexOfByte(arrayToSearch, patternToFind[0]);
 
-      while (i >= 0 && i <= this.arrayToSearch.Length - this.patternToFind.Length)
+      while (i >= 0 && i <= arrayToSearch.Length - patternToFind.Length)
       {
-        byte[] segment = new byte[this.patternToFind.Length];
-        Buffer.BlockCopy(this.arrayToSearch, i, segment, 0, this.patternToFind.Length);
+        byte[] segment = new byte[patternToFind.Length];
+        Buffer.BlockCopy(arrayToSearch, i, segment, 0, patternToFind.Length);
 
-        if (segment.SequenceEqual<byte>(this.patternToFind))
+        if (segment.SequenceEqual<byte>(patternToFind))
         {
-          this.firstPatternIndex = i;
+          firstPatternIndex = i;
           break;
         }
 
-        i = Array.IndexOf<byte>(this.arrayToSearch, this.patternToFind[0], i + this.patternToFind.Length);
+        i = Array.IndexOf<byte>(arrayToSearch, patternToFind[0], i + patternToFind.Length);
       }
     }
 

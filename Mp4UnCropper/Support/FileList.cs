@@ -23,7 +23,7 @@ namespace Mp4UnCropper
     {
       get
       {
-        return this.fileLocationList.Count;
+        return fileLocationList.Count;
       }
     }
 
@@ -47,57 +47,57 @@ namespace Mp4UnCropper
     {
       try
       {
-        Path.GetFullPath(this.path);
+        Path.GetFullPath(path);
       }
       catch (Exception)
       {
-        this.fileLocationList = new List<string> { this.path };
-        this.fileResult = FileResult.IllegalFilename;
+        fileLocationList = new List<string> { path };
+        fileResult = FileResult.IllegalFilename;
         return;
       }
 
       try
       {
-        FileAttributes fileAttributes = File.GetAttributes(this.path);
+        FileAttributes fileAttributes = File.GetAttributes(path);
         if (!fileAttributes.HasFlag(FileAttributes.Directory))
         {
-          this.fileLocationList = new List<string> { this.path };
-          this.fileResult = FileResult.Success;
+          fileLocationList = new List<string> { path };
+          fileResult = FileResult.Success;
           return;
         }
       }
       catch (FileNotFoundException)
       {
-        this.fileLocationList = new List<string> { this.path };
-        this.fileResult = FileResult.PathNotFound;
+        fileLocationList = new List<string> { path };
+        fileResult = FileResult.PathNotFound;
         return;
       }
       catch (Exception)
       {
-        this.fileLocationList = new List<string> { this.path };
-        this.fileResult = FileResult.UnknownError;
+        fileLocationList = new List<string> { path };
+        fileResult = FileResult.UnknownError;
         return;
       }
 
-      if (!Directory.Exists(this.path))
+      if (!Directory.Exists(path))
       {
-        this.fileLocationList = new List<string> { this.path };
-        this.fileResult = FileResult.PathNotFound;
+        fileLocationList = new List<string> { path };
+        fileResult = FileResult.PathNotFound;
         return;
       }
 
       try
       {
-        this.fileLocationList = Directory.GetFiles(this.path, "*.mp4").ToList<string>();
+        fileLocationList = Directory.GetFiles(path, "*.mp4").ToList<string>();
       }
       catch (Exception)
       {
-        this.fileLocationList = new List<string> { this.path };
-        this.fileResult = FileResult.UnknownError;
+        fileLocationList = new List<string> { path };
+        fileResult = FileResult.UnknownError;
         return;
       }
 
-      this.fileResult = FileResult.Success;
+      fileResult = FileResult.Success;
     }
 
   }

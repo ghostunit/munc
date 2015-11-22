@@ -13,7 +13,9 @@
     }
 
     internal string FilenamePrefix { get; private set; }
+
     internal string FilenameSuffix { get; private set; }
+    
     internal string SavePath { get; private set; }
 
   }

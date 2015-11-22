@@ -6,43 +6,49 @@ namespace Mp4UnCropper
   internal class LoadFile : BinaryFile
   {
     internal LoadFile(string filename)
+      : base()
     {
-      this.filename = filename;
-      this.fileAsBytes = new byte[0];
-      this.fileResult = FileResult.Undefined;
+      Path = filename;
+      Bytes = new byte[0];
+      Result = FileResult.Undefined;
+      LogPrefix = "LOAD RESULT:   ";
       Load();
     }
 
     private void Load()
     {
-      if (this.fileResult != FileResult.Undefined)
+      if (Result != FileResult.Undefined)
       {
+        Logger.Info("{0} An unexpected error occurred while trying to load the file.", LogPrefix);
         return;
       }
 
       try
       {
-        System.IO.Path.GetFullPath(this.filename);
+        System.IO.Path.GetFullPath(Path);
       }
       catch (Exception)
       {
-        this.fileResult = FileResult.IllegalFilename;
+        Logger.Info("{0} Could not load the original folder or file because it contained illegal characters.", LogPrefix);
+        Result = FileResult.IllegalFilename;
         return;
       }
 
       try
       {
-        this.fileAsBytes = File.ReadAllBytes(this.filename);
+        Bytes = File.ReadAllBytes(Path);
       }
       catch (FileNotFoundException)
       {
-        this.fileResult = FileResult.PathNotFound;
+        Logger.Info("{0} Could not find the specified file.", LogPrefix);
+        Result = FileResult.PathNotFound;
         return;
       }
 
-      if (this.fileAsBytes != null && this.fileAsBytes.Length > 0)
+      if (Bytes != null && Bytes.Length > 0)
       {
-        this.fileResult = FileResult.Success;
+        Logger.Info("{0} Success", LogPrefix);
+        Result = FileResult.Success;
       }
     }
   }
