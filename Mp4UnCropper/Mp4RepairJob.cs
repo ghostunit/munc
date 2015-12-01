@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Mp4UnCropper
 {
@@ -42,7 +44,7 @@ namespace Mp4UnCropper
     }
 
     /// <summary>Runs the MP4 repair job. Loads, modifies and writes each of the source file(s) and records the results of that repair.</summary>
-    public void Run()
+    public void Run(/*IProgress<int> progress*/)
     {
       int jobID = 0;
       List<string> filenames = new FileList(pathToOriginalFiles).Files;
@@ -58,7 +60,15 @@ namespace Mp4UnCropper
         var jobResult = new JobResult(jobID, loadFile, modifiedFile, writeFile);
         jobResults.Add(jobResult);
         SendFileProcessedEvent(jobResults.Count);
+        Thread.Sleep(500);
         jobID++;
+
+        /*
+        if (progress != null)
+        {
+          progress.Report(jobResults.Count);
+        }
+        */
       }
 
       SendJobCompleteEvent();

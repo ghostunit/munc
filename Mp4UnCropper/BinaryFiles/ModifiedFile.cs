@@ -5,6 +5,7 @@
     private byte[] originalFile;
     private byte[] oldData;
     private byte[] newData;
+    private PatternMatch patternMatch;
 
     internal ModifiedFile(byte[] originalFile, byte[] oldData, byte[] newData, string destinationFilename)
       : base()
@@ -21,31 +22,46 @@
     private void ReplaceBytes()
     {
       Bytes = originalFile;
+      CheckForProgramError();
+      VerifyFileIsNotEmpty();
+      FindAndReplaceBytes();
+    }
 
-      if (Bytes == null || Bytes.Length == 0)
+    private void VerifyFileIsNotEmpty()
+    {
+      if (Result == FileResult.Undefined)
       {
-        Logger.Info("{0} The data provided was empty, therefore there was no file to modify.", LogPrefix);
-        Bytes = new byte[0];
-        Result = FileResult.NoFileToModify;
-      }
-
-      PatternMatch patternMatch = new PatternMatch(oldData, Bytes);
-      if (!patternMatch.Success)
-      {
-        Logger.Info("{0} The dimensions provided were not found anywhere in the file.", LogPrefix);
-        Bytes = new byte[0];
-        Result = FileResult.PatternNotFound;
-      }
-      else
-      {
-        Logger.Info("{0} Success", LogPrefix);
-        Result = FileResult.Success;
-        Bytes[patternMatch.Index] = newData[0];
-        Bytes[patternMatch.Index + 1] = newData[1];
-        Bytes[patternMatch.Index + 2] = newData[2];
-        Bytes[patternMatch.Index + 3] = newData[3];
+        if (Bytes == null || Bytes.Length == 0)
+        {
+          Logger.Info("{0} The data provided was empty, therefore there was no file to modify.", LogPrefix);
+          Bytes = new byte[0];
+          Result = FileResult.NoFileToModify;
+        }
       }
     }
 
+    private void FindAndReplaceBytes()
+    {
+      if (Result == FileResult.Undefined)
+      {
+        PatternMatch patternMatch = new PatternMatch(oldData, Bytes);
+        if (!patternMatch.Success)
+        {
+          Logger.Info("{0} The dimensions provided were not found anywhere in the file.", LogPrefix);
+          Bytes = new byte[0];
+          Result = FileResult.PatternNotFound;
+        }
+        else
+        {
+          Logger.Info("{0} Success", LogPrefix);
+          Result = FileResult.Success;
+          Bytes[patternMatch.Index] = newData[0];
+          Bytes[patternMatch.Index + 1] = newData[1];
+          Bytes[patternMatch.Index + 2] = newData[2];
+          Bytes[patternMatch.Index + 3] = newData[3];
+        }
+      }
+    }
+    
   }
 }

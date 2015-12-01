@@ -17,20 +17,30 @@ namespace Mp4UnCropper
 
     private void Load()
     {
+      CheckForProgramError();
+      CheckForIllegalCharacters();
+      ReadFileFromDisk();
+      ConfirmSuccess();
+    }
+
+    private void ConfirmSuccess()
+    {
       if (Result != FileResult.Undefined)
       {
-        Logger.Info("{0} An unexpected error occurred while trying to load the file.", LogPrefix);
         return;
       }
 
-      try
+      if (Bytes != null && Bytes.Length > 0)
       {
-        System.IO.Path.GetFullPath(Path);
+        Logger.Info("{0} Success", LogPrefix);
+        Result = FileResult.Success;
       }
-      catch (Exception)
+    }
+
+    private void ReadFileFromDisk()
+    {
+      if (Result != FileResult.Undefined)
       {
-        Logger.Info("{0} Could not load the original folder or file because it contained illegal characters.", LogPrefix);
-        Result = FileResult.IllegalFilename;
         return;
       }
 
@@ -42,14 +52,8 @@ namespace Mp4UnCropper
       {
         Logger.Info("{0} Could not find the specified file.", LogPrefix);
         Result = FileResult.PathNotFound;
-        return;
-      }
-
-      if (Bytes != null && Bytes.Length > 0)
-      {
-        Logger.Info("{0} Success", LogPrefix);
-        Result = FileResult.Success;
       }
     }
+
   }
 }
