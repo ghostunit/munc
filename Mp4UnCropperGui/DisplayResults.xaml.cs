@@ -33,15 +33,15 @@ namespace Mp4UnCropperGui
 
     private async void Run(Mp4RepairJob mp4RepairJob)
     {
-      /*
-      var progress = new Progress<int>(UpdateProgress);
-      await Task.Run(() => mp4RepairJob.Run(progress));
-      */
+      var progress = new Progress<JobResult>(UpdateProgress);
+      await Task.Run(() => mp4RepairJob.RunAsync(progress));
     }
 
-    private void UpdateProgress(int e)
+
+    private void UpdateProgress(JobResult jobResult)
     {
-      progressBar.Value = e / jobsToProcess;
+      MessageBox.Show("Status = " + jobResult.Status);
+      //progressBar.Value = e / jobsToProcess;
     }
 
     private void HandleUpdatedFileList(object sender, FileListUpdatedEventArgs e)

@@ -44,34 +44,54 @@ namespace Mp4UnCropper
     }
 
     /// <summary>Runs the MP4 repair job. Loads, modifies and writes each of the source file(s) and records the results of that repair.</summary>
-    public void Run(/*IProgress<int> progress*/)
+    public void Run()
     {
       int jobID = 0;
+      List<string> filenames = UpdateFileList();
+      foreach (string filename in filenames)
+      {
+        jobResults.Add(RunSingleRepairJob(filename, jobID));
+        SendFileProcessedEvent(jobResults.Count);
+        jobID++;
+      }
+      SendJobCompleteEvent();
+    }
+
+    /// <summary>Runs the MP4 repair job. Loads, modifies and writes each of the source file(s) and records the results of that repair.</summary>
+    public Task RunAsync(IProgress<JobResult> progress)
+    {
+      int jobID = 0;
+      List<string> filenames = UpdateFileList();
+      return Task.Run(() =>
+      {
+        foreach (string filename in filenames)
+        {
+          var jobResult = RunSingleRepairJob(filename, jobID);
+          jobResults.Add(jobResult);
+          progress.Report(jobResult);
+          SendFileProcessedEvent(jobResults.Count);
+          jobID++;
+        }
+        SendJobCompleteEvent();
+      });
+    }
+
+    private List<string> UpdateFileList()
+    {
       List<string> filenames = new FileList(pathToOriginalFiles).Files;
       filenames.Sort();
       SendFileListUpdatedEvent(filenames.Count);
+      return filenames;
+    }
 
-      foreach (string filename in filenames)
-      {
-        var loadFile = new LoadFile(filename);
-        var destination = new Destination(fileSaveRule, loadFile.Path);
-        var modifiedFile = new ModifiedFile(loadFile.Bytes, oldDimensions.AsBytes, newDimensions.AsBytes, destination.Path);
-        var writeFile = new WriteFile(modifiedFile);
-        var jobResult = new JobResult(jobID, loadFile, modifiedFile, writeFile);
-        jobResults.Add(jobResult);
-        SendFileProcessedEvent(jobResults.Count);
-        Thread.Sleep(500);
-        jobID++;
-
-        /*
-        if (progress != null)
-        {
-          progress.Report(jobResults.Count);
-        }
-        */
-      }
-
-      SendJobCompleteEvent();
+    private JobResult RunSingleRepairJob(string filename, int jobID)
+    {
+      var loadFile = new LoadFile(filename);
+      var destination = new Destination(fileSaveRule, loadFile.Path);
+      var modifiedFile = new ModifiedFile(loadFile.Bytes, oldDimensions.AsBytes, newDimensions.AsBytes, destination.Path);
+      var writeFile = new WriteFile(modifiedFile);
+      var jobResult = new JobResult(jobID, loadFile, modifiedFile, writeFile);
+      return jobResult;
     }
 
     private void SendFileListUpdatedEvent(int filesToProcess)
