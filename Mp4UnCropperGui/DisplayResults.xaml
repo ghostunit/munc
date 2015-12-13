@@ -1,0 +1,20 @@
+﻿<Window x:Class="Mp4UnCropperGui.DisplayResults"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:local="clr-namespace:Mp4UnCropperGui"
+        mc:Ignorable="d"
+        Title="Munc - Job Results" Height="200" Width="306"
+        WindowStyle="SingleBorderWindow" ResizeMode="NoResize" Background="Black">
+
+  <Grid>
+    <TextBlock Name="tbAllJobs" Style="{StaticResource ExampleFilename}" Margin="6,25,0,0"/>
+    <TextBlock Name="tbSuccessfulJobs" Style="{StaticResource ExampleFilename}" Margin="6,50,0,0"/>
+    <TextBlock Name="tbLoadFailures" Style="{StaticResource ExampleFilename}" Margin="6,75,0,0"/>
+    <TextBlock Name="tbModifyFailures" Style="{StaticResource ExampleFilename}" Margin="6,100,0,0"/>
+    <TextBlock Name="tbWriteFailures" Style="{StaticResource ExampleFilename}" Margin="6,125,0,0"/>
+  </Grid>
+
+</Window>
