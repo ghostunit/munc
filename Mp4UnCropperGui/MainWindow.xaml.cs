@@ -1,14 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Windows;
-using Mp4HeaderFix;
 using System.Windows.Controls;
 using System.Windows.Media;
-using System.Collections.Generic;
-using Xceed.Wpf.Toolkit;
-using System.IO;
 using Microsoft.WindowsAPICodePack.Dialogs;
+using Mp4UnCropper;
+using Xceed.Wpf.Toolkit;
 
-namespace Mp4HeaderFixGui
+namespace Mp4UnCropperGui
 {
   /// <summary>
   /// Interaction logic for MainWindow.xaml
@@ -51,10 +51,10 @@ namespace Mp4HeaderFixGui
 
     private Mp4RepairJob PrepareRepairJob()
     {
-      String sourcePath = String.Empty;
+      string sourcePath = String.Empty;
       Dimension orginalDimensions = new Dimension(0, 0);
       Dimension actualDimensions = new Dimension(0, 0);
-      FileSaveRule fileSaveRule = new FileSaveRule("", "", "");
+      FileSaveRule fileSaveRule = new FileSaveRule(string.Empty, string.Empty, string.Empty);
 
       if (ValidateMp4RepairJob())
       {
@@ -234,14 +234,12 @@ namespace Mp4HeaderFixGui
 
     private void btnOk_Click(object sender, EventArgs e)
     {
-      Mp4RepairJob mp4headerJob = PrepareRepairJob();
-      mp4headerJob.Run();
-      DisplayResults displayResults = new DisplayResults(mp4headerJob);
+      DisplayResults displayResults = new DisplayResults(PrepareRepairJob());
     }
 
     private void txtFilenamePrefixOrSuffix_TextChanged(object sender, EventArgs e)
     {
-      this.lblExampleFilename.Text = this.txtFilenamePrefix.Text + "Example" + this.txtFilenameSuffix.Text + ".mp4";
+      this.lblExampleFilename.Text = this.txtFilenamePrefix.Text + "ExampleFilename" + this.txtFilenameSuffix.Text;
     }
 
     #endregion
