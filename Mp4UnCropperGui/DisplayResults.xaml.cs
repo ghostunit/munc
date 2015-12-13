@@ -1,7 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using System.Windows;
 using Mp4UnCropper;
-using System;
 
 namespace Mp4UnCropperGui
 {
@@ -11,24 +11,18 @@ namespace Mp4UnCropperGui
   public partial class DisplayResults : Window
   {
     private int jobsToProcess;
+    private int successfulJobs = 0;
+    private int loadFailures = 0;
+    private int modifyFailures = 0;
+    private int writeFailures = 0;
 
     public DisplayResults(Mp4RepairJob mp4RepairJob)
     {
       InitializeComponent();
-
       mp4RepairJob.FileListUpdated += new FileListUpdatedEventHandler(HandleUpdatedFileList);
-      mp4RepairJob.FileProcessed += new FileProcessedEventHandler(HandleProcessedFile);
       mp4RepairJob.JobComplete += new JobCompleteEventHandler(HandleJobComplete);
-
       this.Show();
-
       Run(mp4RepairJob);
-
-      //tbAllJobs.Text = mp4RepairJob.Results.Count.ToString() + " total jobs run.";
-      //tbSuccessfulJobs.Text = mp4RepairJob.Results.FindAll(j => j.Passed).Count.ToString() + " successful repairs made.";
-      //tbLoadFailures.Text = mp4RepairJob.Results.FindAll(j => j.FailurePoint == FailureType.Load).Count.ToString() + " load failures.";
-      //tbModifyFailures.Text = mp4RepairJob.Results.FindAll(j => j.FailurePoint == FailureType.Modify).Count.ToString() + " files were not repaired.";
-      //tbWriteFailures.Text = mp4RepairJob.Results.FindAll(j => j.FailurePoint == FailureType.Write).Count.ToString() + " write failures.";
     }
 
     private async void Run(Mp4RepairJob mp4RepairJob)
@@ -37,11 +31,44 @@ namespace Mp4UnCropperGui
       await Task.Run(() => mp4RepairJob.RunAsync(progress));
     }
 
-
     private void UpdateProgress(JobResult jobResult)
     {
-      MessageBox.Show("Status = " + jobResult.Status);
-      //progressBar.Value = e / jobsToProcess;
+      ProcessJobResult(jobResult);
+      UpdateGui();
+    }
+
+    private void UpdateGui()
+    {
+      tbAllJobs.Text = jobsToProcess.ToString() + " total jobs to run.";
+      tbSuccessfulJobs.Text = successfulJobs.ToString() + " successful jobs.";
+      tbLoadFailures.Text = loadFailures.ToString() + " load failures.";
+      tbModifyFailures.Text = modifyFailures.ToString() + " files were not repaired.";
+      tbWriteFailures.Text = writeFailures.ToString() + " write failures.";
+    }
+
+    private void ProcessJobResult(JobResult jobResult)
+    {
+      if (jobResult.Passed)
+      {
+        successfulJobs++;
+      }
+      else
+      {
+        switch (jobResult.FailurePoint)
+        {
+          case FailureType.Load:
+            loadFailures++;
+            break;
+
+          case FailureType.Modify:
+            modifyFailures++;
+            break;
+
+          case FailureType.Write:
+            writeFailures++;
+            break;
+        }
+      }
     }
 
     private void HandleUpdatedFileList(object sender, FileListUpdatedEventArgs e)
@@ -49,17 +76,9 @@ namespace Mp4UnCropperGui
       jobsToProcess = e.FilesToProcess;
     }
 
-    private void HandleProcessedFile(object sender, FileProcessedEventArgs e)
-    {
-      if (jobsToProcess != 0)
-      {
-        progressBar.Value = (e.ProcessedFiles / jobsToProcess) * 100;
-      }
-    }
-
     private void HandleJobComplete(object sender, EventArgs e)
     {
-      progressBar.Visibility = System.Windows.Visibility.Hidden;
+      // TODO: Decide what to do with this event
     }
 
   }

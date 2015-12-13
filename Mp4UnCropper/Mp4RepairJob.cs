@@ -54,10 +54,13 @@ namespace Mp4UnCropper
         SendFileProcessedEvent(jobResults.Count);
         jobID++;
       }
+
       SendJobCompleteEvent();
     }
 
     /// <summary>Runs the MP4 repair job. Loads, modifies and writes each of the source file(s) and records the results of that repair.</summary>
+    /// <param name="progress">An object for reporting progress</param>
+    /// <returns>The jobs Task</returns>
     public Task RunAsync(IProgress<JobResult> progress)
     {
       int jobID = 0;
@@ -68,10 +71,16 @@ namespace Mp4UnCropper
         {
           var jobResult = RunSingleRepairJob(filename, jobID);
           jobResults.Add(jobResult);
-          progress.Report(jobResult);
+
+          if (progress != null)
+          {
+            progress.Report(jobResult);
+          }
+
           SendFileProcessedEvent(jobResults.Count);
           jobID++;
         }
+
         SendJobCompleteEvent();
       });
     }

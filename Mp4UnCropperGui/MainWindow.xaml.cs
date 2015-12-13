@@ -79,6 +79,7 @@ namespace Mp4UnCropperGui
       validationResults.Add(this.txtDestinationPath.Text.IsValidDestinationPath());
 
       // Validate the dimensions
+      // TODO: Deal with empty dimensions
       validationResults.Add(this.txtOriginalDimensionsWidth.Text.IsValidDimension());
       validationResults.Add(this.txtOriginalDimensionsHeight.Text.IsValidDimension());
       validationResults.Add(this.txtActualDimensionsWidth.Text.IsValidDimension());
@@ -239,7 +240,7 @@ namespace Mp4UnCropperGui
 
     private void txtFilenamePrefixOrSuffix_TextChanged(object sender, EventArgs e)
     {
-      this.lblExampleFilename.Text = this.txtFilenamePrefix.Text + "ExampleFilename" + this.txtFilenameSuffix.Text;
+      this.lblExampleFilename.Text = this.txtFilenamePrefix.Text + "Example" + this.txtFilenameSuffix.Text;
     }
 
     #endregion

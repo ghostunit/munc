@@ -6,18 +6,15 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:Mp4UnCropperGui"
         mc:Ignorable="d"
-        Title="DisplayResults" Height="200" Width="306"
+        Title="Munc - Job Results" Height="200" Width="306"
         WindowStyle="SingleBorderWindow" ResizeMode="NoResize" Background="Black">
 
   <Grid>
-    <ProgressBar Name="progressBar" Minimum="0" Maximum="100" Value="0" />
-    
-    <!--<TextBlock Name="tbAllJobs" Style="{StaticResource ExampleFilename}" Margin="6,25,0,0"/>
+    <TextBlock Name="tbAllJobs" Style="{StaticResource ExampleFilename}" Margin="6,25,0,0"/>
     <TextBlock Name="tbSuccessfulJobs" Style="{StaticResource ExampleFilename}" Margin="6,50,0,0"/>
     <TextBlock Name="tbLoadFailures" Style="{StaticResource ExampleFilename}" Margin="6,75,0,0"/>
     <TextBlock Name="tbModifyFailures" Style="{StaticResource ExampleFilename}" Margin="6,100,0,0"/>
-    <TextBlock Name="tbWriteFailures" Style="{StaticResource ExampleFilename}" Margin="6,125,0,0"/>-->
-
+    <TextBlock Name="tbWriteFailures" Style="{StaticResource ExampleFilename}" Margin="6,125,0,0"/>
   </Grid>
 
 </Window>

@@ -23,7 +23,7 @@ namespace Mp4UnCropper
       string result = String.Empty;
 
       string filenameWithoutExtension = System.IO.Path.GetFileNameWithoutExtension(originalFilename);
-      string extension = System.IO.Path.GetExtension(filenameWithoutExtension);
+      string extension = System.IO.Path.GetExtension(originalFilename);
 
       result = fileSaveRule.SavePath;
       result += fileSaveRule.FilenamePrefix;
