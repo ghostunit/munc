@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Mp4UnCropper;
 using Mp4UnCropperTests.Samples;
 
@@ -11,7 +10,9 @@ namespace Mp4UnCropperTests
     [TestMethod]
     public void Result_ShouldBeLoaded_WhenByteArrayIsCreatedFromFilename()
     {
+      new WriteFile(new SampleBinaryFile(SampleFilenames.FileThatExists, SampleByteArrays.ArrayToSearch));
       Assert.AreEqual(FileResult.Success, new LoadFile(SampleFilenames.FileThatExists).Result);
+      System.IO.File.Delete(SampleFilenames.FileThatExists);
     }
 
     [TestMethod]
@@ -35,16 +36,9 @@ namespace Mp4UnCropperTests
     [TestMethod]
     public void Bytes_ShouldBeLongerThanZero_WhenFileIsLoaded()
     {
-      var lf = new LoadFile(SampleFilenames.FileThatExists);
-      for (int i = 0; i < 5; i++)
-      {
-        if (System.IO.File.Exists(lf.Path))
-        {
-          System.Threading.Thread.Sleep(1000);
-        }
-      }
-
-      Assert.IsTrue(lf.Bytes.Length > 0);
+      new WriteFile(new SampleBinaryFile(SampleFilenames.FileThatExists, SampleByteArrays.ArrayToSearch));
+      Assert.IsTrue(new LoadFile(SampleFilenames.FileThatExists).Bytes.Length > 0);
+      System.IO.File.Delete(SampleFilenames.FileThatExists);
     }
 
     [TestMethod]

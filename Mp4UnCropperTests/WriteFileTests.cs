@@ -10,7 +10,9 @@ namespace Mp4UnCropperTests
     [TestMethod]
     public void MakeSureTestVideoExists()
     {
+      new WriteFile(new SampleBinaryFile(SampleFilenames.FileThatExists, SampleByteArrays.ArrayToSearch));
       Assert.IsTrue(System.IO.File.Exists(SampleFilenames.FileThatExists));
+      System.IO.File.Delete(SampleFilenames.FileThatExists);
     }
 
     [TestMethod]
@@ -18,6 +20,7 @@ namespace Mp4UnCropperTests
     {
       SampleBinaryFile sampleBinaryFile = new SampleBinaryFile(SampleFilenames.FileThatExists, SampleByteArrays.ArrayToSearch);
       Assert.IsTrue(new WriteFile(sampleBinaryFile).Bytes.Length > 0);
+      System.IO.File.Delete(SampleFilenames.FileThatExists);
     }
 
     [TestMethod]
