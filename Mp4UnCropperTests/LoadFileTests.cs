@@ -36,7 +36,14 @@ namespace Mp4UnCropperTests
     public void Bytes_ShouldBeLongerThanZero_WhenFileIsLoaded()
     {
       var lf = new LoadFile(SampleFilenames.FileThatExists);
-      System.Threading.Thread.Sleep(1000);
+      for (int i = 0; i < 5; i++)
+      {
+        if (System.IO.File.Exists(lf.Path))
+        {
+          System.Threading.Thread.Sleep(1000);
+        }
+      }
+
       Assert.IsTrue(lf.Bytes.Length > 0);
     }
 
